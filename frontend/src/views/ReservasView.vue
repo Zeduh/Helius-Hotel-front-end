@@ -32,8 +32,8 @@
 
 <script>
 import TituloDescricaoInicial from "../components/TituloDescricaoInicial.vue";
-import inputForm from "../components/InputForm.vue";
-import TextAreaForm from "../components/TextAreaForm.vue";
+import inputForm from "../components/forms/InputForm.vue";
+import TextAreaForm from "../components/forms/TextAreaForm.vue";
 
 export default {
   name: "ReservasView",
