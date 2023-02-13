@@ -10,26 +10,26 @@
             <i class="fa-solid fa-xmark"></i>
           </button>
           <ul>
-            <li class="selected">
-              <a href="/index.html">Home</a>
+            <li class="selected" @click="$router.push('/')">
+              <a>Home</a>
             </li>
             <li>
-              <a href="/pages/o_hotel.html">O Hotel</a>
+              <a>O Hotel</a>
             </li>
             <li>
-              <a href="/pages/acomodacoes.html">Acomodações</a>
+              <a>Acomodações</a>
             </li>
             <li @click="$router.push('reservas')">
               <a>Reservas</a>
             </li>
             <li>
-              <a href="/pages/contato.html">Contato</a>
+              <a>Contato</a>
             </li>
             <li>
-              <a href="/pages/login.html">Login</a>
+              <a>Login</a>
             </li>
             <li>
-              <a href="#" id="signUpBtnSS">Cadastre-se</a>
+              <a id="signUpBtnSS">Cadastre-se</a>
             </li>
           </ul>
         </div>
@@ -47,26 +47,26 @@
     </div>
     <nav class="headerMenu">
       <ul>
-        <li class="selected">
-          <a href="/index.html">Home</a>
+        <li class="selected" @click="$router.push('/')">
+          <a>Home</a>
         </li>
         <li>
-          <a href="/pages/o_hotel.html">O Hotel</a>
+          <a>O Hotel</a>
         </li>
         <li>
-          <a href="/pages/acomodacoes.html">Acomodações</a>
+          <a>Acomodações</a>
         </li>
         <li @click="$router.push('reservas')">
           <p>Reservas</p>
         </li>
         <li>
-          <a href="/pages/contato.html">Contato</a>
+          <a>Contato</a>
         </li>
         <li>
-          <a href="/pages/login.html">Login</a>
+          <a>Login</a>
         </li>
         <li>
-          <a href="#" id="signUpBtnLS">Cadastre-se</a>
+          <a id="signUpBtnLS">Cadastre-se</a>
         </li>
       </ul>
     </nav>

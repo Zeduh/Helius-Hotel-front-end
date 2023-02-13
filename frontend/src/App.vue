@@ -11,7 +11,6 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -33,6 +32,10 @@ h1 {
 }
 
 main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
     width: 100%;
     overflow: hidden;
 }

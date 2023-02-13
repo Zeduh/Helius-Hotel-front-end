@@ -29,8 +29,9 @@ export default {
 <style lang="scss" scoped>
 input {
   margin-bottom: 40px;
-  height: 35px;
-  width: 260px;
+  height: 60px;
+  width: 280px;
+  margin-top: 5px;
   font-size: 17px;
   padding: 10px;
 }
