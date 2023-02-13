@@ -2,7 +2,8 @@
   <label :for="classInput">
     <p>{{ labelTitle }}</p>
     <select :class="classInput">
-        <option v-for="list in optionsList" :key="list" :value=""></option>
+        <option value="0" class="firstOption" selected>Selecione a quantidade</option>
+        <option v-for="list in optionsList" :key="list" :value="list"></option>
                 <!-- trabalhar com ref no value rever video aula para relembrar  -->
     </select>
   </label>
@@ -14,23 +15,23 @@ export default {
   props: {
     classInput: {
       type: String,
-      default: "inputForm",
+      default: "inputForm"
     },
     labelTitle: {
-      type: String,
+      type: String
     },
     optionsList: {
-      type: [Array,Object],
+      type: [Array,Object]
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-input {
+select {
   margin-bottom: 40px;
-  height: 35px;
-  width: 200px;
+  height: 60px;
+  width: 280px;
   font-size: 17px;
   padding: 10px;
 }
@@ -40,5 +41,6 @@ label {
   text-transform: uppercase;
   font-weight: bold;
   margin-bottom: 5px;
+  text-align: left;
 }
 </style>

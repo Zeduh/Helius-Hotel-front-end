@@ -30,7 +30,7 @@ export default {
 input {
   margin-bottom: 40px;
   height: 35px;
-  width: 200px;
+  width: 260px;
   font-size: 17px;
   padding: 10px;
 }
@@ -40,5 +40,6 @@ label {
   text-transform: uppercase;
   font-weight: bold;
   margin-bottom: 5px;
+  text-align: left;
 }
 </style>

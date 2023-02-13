@@ -73,8 +73,9 @@
     </header>
 </template>
 
+
 <style lang="scss" scoped>
-@use "@/styles/variables.scss" as v;
+@import "@/assets/scss/_colors.scss";
 
 @media screen and (max-width: 550px) {
     .topBar {
@@ -125,7 +126,7 @@ header {
     flex-direction: column;
     
     width: 100%;
-    color: v.$mainColorBlack;
+    color: $mainColorBlack;
 }
 
 .topBar {
@@ -134,11 +135,11 @@ header {
     justify-content: space-between;
     align-items: center;
 
-    background-color: v.$mainColorBlack;
+    background-color: $mainColorBlack;
 
     a {
         text-decoration: none;
-        color: v.$mainColorWhite;
+        color: $mainColorWhite;
 
         &:hover {
             text-decoration: underline;
@@ -164,14 +165,14 @@ header {
     justify-content: center;
     align-items: end;
 
-    background-image: url("../../images/hotel01.jpg");
+    background-image: url("../assets/images/hotel01.jpg");
     filter: brightness(100%) saturate(50%);
     background-size: cover;
     background-attachment: fixed;
     position: relative;
     width: 100%;
     height: 18rem;
-    color: v.$mainColorWhite;
+    color: $mainColorWhite;
 
     #blackBackground {
         display: flex;
@@ -192,11 +193,11 @@ header {
 
 #mobileMenuDiv {
     button {
-        background-color: v.$mainColorBlack;
+        background-color: $mainColorBlack;
         border: none;
 
         .menuIcon {
-            color: v.$mainColorWhite;
+            color: $mainColorWhite;
         }
     }
 }
@@ -207,7 +208,7 @@ header {
 
     width: 60vw;
     height: 100vh;
-    background-color: v.$mainColorBlack;
+    background-color: $mainColorBlack;
     position: absolute;
     z-index: 2;
     top: 0;
@@ -220,7 +221,7 @@ header {
 
         padding: 1rem 3rem;
         font-size: 2rem;
-        color: v.$mainColorWhite;
+        color: $mainColorWhite;
     }
 
     ul {
@@ -235,7 +236,7 @@ header {
             margin: 1rem 0;
 
             &:nth-child(7) {
-                background-color: v.$mainColorYellow;
+                background-color: $mainColorYellow;
                 padding: 1rem;
                 border-radius: 2rem;
             }
@@ -244,7 +245,7 @@ header {
 }
 
 .headerMenu {
-    background-color: v.$mainColorYellow;
+    background-color: $mainColorYellow;
 
     ul {
         display: flex;
@@ -258,19 +259,19 @@ header {
             margin: 0 1.4rem;
             padding: 1rem 0.8rem;
             height: 100%;
-            border-bottom: 0.2rem solid v.$mainColorYellow;
+            border-bottom: 0.2rem solid $mainColorYellow;
 
             a {
                 text-decoration: none;
-                color: v.$mainColorBlack;
+                color: $mainColorBlack;
             }
 
             &:hover {
-                border-bottom: 0.2rem solid v.$mainColorBlack;
+                border-bottom: 0.2rem solid $mainColorBlack;
             }
 
             &:nth-child(7) {
-                border-bottom: 0.2rem solid v.$mainColorBlack;
+                border-bottom: 0.2rem solid $mainColorBlack;
             }
         }
     }
