@@ -1,6 +1,5 @@
 <template>
   <main>
-    <Header/>
     <section>
       <TituloDescricaoInicial
         title="Reservas"
@@ -45,7 +44,6 @@
 </template>
 
 <script>
-import Header from "@/components/HeaderComponent.vue";
 import TituloDescricaoInicial from "../components/TituloDescricaoInicial.vue";
 import inputForm from "../components/forms/InputForm.vue";
 import SelectForm from "../components/forms/SelectForm.vue";
@@ -53,7 +51,7 @@ import TextAreaForm from "../components/forms/TextAreaForm.vue";
 
 export default {
   name: "ReservasView",
-  components: { Header, TituloDescricaoInicial, inputForm, SelectForm },
+  components: { TituloDescricaoInicial, inputForm, SelectForm },
   data() {
     return {};
   },
