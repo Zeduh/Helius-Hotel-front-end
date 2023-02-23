@@ -9,9 +9,9 @@
             </div>
         </div>
         <div class="footer-social">
-            <img class="footer-social--image" src="images/facebook.png">
-            <img class="footer-social--image"  src="images/whatsapp.png">
-            <img class="footer-social--image" src="images/instagram.png">
+            <img class="footer-social--image" :src="require('@/assets/images/facebook.png')">
+            <img class="footer-social--image"  :src="require('@/assets/images/whatsapp.png')">
+            <img class="footer-social--image" :src="require('@/assets/images/instagram.png')">
         </div>
         <div class="footer-content">
             <p class="footer-content--desc">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto, ad?</p>
