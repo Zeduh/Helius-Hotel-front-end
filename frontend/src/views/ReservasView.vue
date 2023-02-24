@@ -36,7 +36,8 @@
           </div>
         </div>
         <div class="textArea-container">
-          <TextAreaForm />
+          <inputForm classInput="qtdTotal" labelTitle="Total de Pessoas:"/>
+          <TextAreaForm labelTitle="Informações Adicionais:"  />
         </div>
       </form>
     </section>
@@ -51,7 +52,7 @@ import TextAreaForm from "../components/forms/TextAreaForm.vue";
 
 export default {
   name: "ReservasView",
-  components: { TituloDescricaoInicial, inputForm, SelectForm },
+  components: { TituloDescricaoInicial, inputForm, SelectForm, TextAreaForm },
   data() {
     return {};
   },
@@ -60,16 +61,25 @@ export default {
 
 
 <style lang="scss" scoped>
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 section {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
 }
 
 .form {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 
   .column-container {
@@ -88,6 +98,15 @@ section {
       margin-right: 0px;
     }
   }
+.textArea-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  & label {
+    text-align: center;
+  }
+}
 }
 
 @media (max-width: 770px) {

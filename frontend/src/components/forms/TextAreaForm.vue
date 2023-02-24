@@ -29,6 +29,22 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
+label {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+textarea {
+    font-size: 15px;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    min-width: 350px;
+    height: 180px;
+}
 </style>
