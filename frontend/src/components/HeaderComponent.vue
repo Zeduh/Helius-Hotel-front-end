@@ -19,7 +19,7 @@
             <li>
               <a>Acomodações</a>
             </li>
-            <li @click="$router.push('reservas')">
+            <li @click="$router.push({name: 'ReservasOption', params: {name:'option'}})">
               <a>Reservas</a>
             </li>
             <li>
@@ -56,7 +56,7 @@
         <li>
           <a>Acomodações</a>
         </li>
-        <li @click="$router.push('reservas')">
+        <li @click="$router.push('/reservas')">
           <p>Reservas</p>
         </li>
         <li>

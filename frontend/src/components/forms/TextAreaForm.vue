@@ -1,5 +1,5 @@
 <template>
-    <label :for="classInput">
+    <label :for="classTxtArea">
         <p>{{labelTitle}}</p>
         <textarea :class="classTxtArea" :cols="column" :rows="rows" :placeholder="placeHolder"></textarea>
     </label>
