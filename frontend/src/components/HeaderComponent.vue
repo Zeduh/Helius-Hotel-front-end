@@ -25,9 +25,10 @@
             <li>
               <a>Contato</a>
             </li>
-            <li>
+            <!-- <li>
               <a>Login</a>
-            </li>
+              <button @click="showLoginModal">Login</button>
+            </li> -->
             <li>
               <a id="signUpBtnSS">Cadastre-se</a>
             </li>
@@ -35,6 +36,7 @@
         </div>
       </div>
       <div id="userArea">
+        <LoginView />
         <a class="hide" id="usernameElement" href=""></a>
         <a class="hide" id="logoutElement" href="">Sair</a>
       </div>
@@ -62,9 +64,10 @@
         <li>
           <a>Contato</a>
         </li>
-        <li>
-          <a>Login</a>
-        </li>
+         <!-- <li>
+              <a>Login</a>
+              <button @click="showLoginModal">Login</button>
+          </li> -->
         <li>
           <a id="signUpBtnLS">Cadastre-se</a>
         </li>
@@ -277,8 +280,14 @@ header {
 }
 </style>
 
+
 <script>
+import LoginView from '@/views/LoginView.vue'
+
 export default {
   name: "HeaderComponent",
+  components:{
+    LoginView
+  },
 };
 </script>
