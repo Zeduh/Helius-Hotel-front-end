@@ -19,7 +19,7 @@
             <li>
               <a>Acomodações</a>
             </li>
-            <li @click="$router.push({name: 'ReservasOption', params: {name:'option'}})">
+            <li @click="$router.push('/reservas')">
               <a>Reservas</a>
             </li>
             <li @click="$router.push('/contato')">
@@ -29,9 +29,9 @@
               <a>Login</a>
               <button @click="showLoginModal">Login</button>
             </li> -->
-            <li>
+            <!-- <li>
               <a id="signUpBtnSS">Cadastre-se</a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -68,9 +68,9 @@
               <a>Login</a>
               <button @click="showLoginModal">Login</button>
           </li> -->
-        <li>
+        <!-- <li>
           <a id="signUpBtnLS">Cadastre-se</a>
-        </li>
+        </li> -->
       </ul>
     </nav>
   </header>
