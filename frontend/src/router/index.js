@@ -20,15 +20,18 @@ const routes = [
     name: 'reservas',
     component: () => import('../views/ReservasView.vue'),
     children: [
-      {path: ':name', name: 'reservasOption', component: () => import('../components/ReservasOption.vue')},
-      {path: ':name', name: 'reservasOrder', component: () => import('../components/ReservasOrder.vue')}
+      {path: ':name', name: 'reservasOption',scroll, component: () => import('../components/reservation/ReservasOption.vue')},
+      {path: ':name', name: 'reservasOrder', component: () => import('../components/reservation/ReservasOrder.vue')}
     ]
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior() {
+    return { top: 0 }
+  }
 })
 
 export default router

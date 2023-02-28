@@ -29,9 +29,9 @@
               <a>Login</a>
               <button @click="showLoginModal">Login</button>
             </li> -->
-            <li>
+            <!-- <li>
               <a id="signUpBtnSS">Cadastre-se</a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -68,9 +68,9 @@
               <a>Login</a>
               <button @click="showLoginModal">Login</button>
           </li> -->
-        <li>
+        <!-- <li>
           <a id="signUpBtnLS">Cadastre-se</a>
-        </li>
+        </li> -->
       </ul>
     </nav>
   </header>
@@ -282,7 +282,7 @@ header {
 
 
 <script>
-import LoginView from '@/views/LoginView.vue'
+import LoginView from '@/components/LoginModal.vue'
 
 export default {
   name: "HeaderComponent",
