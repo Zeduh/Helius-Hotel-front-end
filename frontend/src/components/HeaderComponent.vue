@@ -19,15 +19,16 @@
             <li>
               <a>Acomodações</a>
             </li>
-            <li @click="$router.push('reservas')">
+            <li @click="$router.push({name: 'ReservasOption', params: {name:'option'}})">
               <a>Reservas</a>
             </li>
-            <li>
+            <li @click="$router.push('/contato')">
               <a>Contato</a>
             </li>
-            <li>
+            <!-- <li>
               <a>Login</a>
-            </li>
+              <button @click="showLoginModal">Login</button>
+            </li> -->
             <li>
               <a id="signUpBtnSS">Cadastre-se</a>
             </li>
@@ -35,6 +36,7 @@
         </div>
       </div>
       <div id="userArea">
+        <LoginComponent />
         <a class="hide" id="usernameElement" href=""></a>
         <a class="hide" id="logoutElement" href="">Sair</a>
       </div>
@@ -56,15 +58,16 @@
         <li>
           <a>Acomodações</a>
         </li>
-        <li @click="$router.push('reservas')">
+        <li @click="$router.push('/reservas')">
           <p>Reservas</p>
         </li>
-        <li>
+        <li @click="$router.push('/contato')">
           <a>Contato</a>
         </li>
-        <li>
-          <a>Login</a>
-        </li>
+         <!-- <li>
+              <a>Login</a>
+              <button @click="showLoginModal">Login</button>
+          </li> -->
         <li>
           <a id="signUpBtnLS">Cadastre-se</a>
         </li>
@@ -278,17 +281,14 @@ header {
 }
 </style>
 
-<script setup>
-// // Abertura e fechamento do menu mobile.
-// const buttonOpen = document.querySelector('#mobileMenuBtnOpen')
-// const buttonClose = document.querySelector('#mobileMenuBtnClose')
-// const menu = document.querySelector('#mobileMenu')
 
-// buttonOpen.onclick = () => {
-//   menu.style.display = 'block'
-// }
+<script>
+import LoginComponent from '@/components/LoginComponent.vue'
 
-// buttonClose.onclick = () => {
-//   menu.style.display = 'none'
-// }
+export default {
+  name: "HeaderComponent",
+  components:{
+    LoginComponent
+  },
+};
 </script>

@@ -5,8 +5,7 @@
       <option value="0" class="firstOption" selected>
         Selecione a quantidade
       </option>
-      <option v-for="list in optionsList" :key="list" :value="list"></option>
-      <!-- trabalhar com ref no value rever video aula para relembrar  -->
+      <option v-for="list in optionsList" :key="list" :value="list">{{list}}</option>
     </select>
   </label>
 </template>
