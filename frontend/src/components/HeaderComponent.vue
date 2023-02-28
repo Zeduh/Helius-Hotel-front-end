@@ -77,7 +77,7 @@
 <style lang="scss" scoped>
 @import "@/assets/scss/_colors.scss";
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 768px) {
   .topBar {
     position: fixed;
     z-index: 1;
@@ -106,7 +106,7 @@
   }
 }
 
-@media screen and (min-width: 550px) {
+@media screen and (min-width: 768px) {
   #mobileMenuDiv {
     visibility: hidden;
   }
