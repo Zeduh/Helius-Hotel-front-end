@@ -19,10 +19,10 @@
             <li>
               <a>Acomodações</a>
             </li>
-            <li @click="$router.push({name: 'ReservasOption', params: {name:'option'}})">
+            <li @click="$router.push('/reservas')">
               <a>Reservas</a>
             </li>
-            <li>
+            <li @click="$router.push('/contato')">
               <a>Contato</a>
             </li>
             <!-- <li>
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div id="userArea">
-        <LoginView />
+        <LoginComponent />
         <a class="hide" id="usernameElement" href=""></a>
         <a class="hide" id="logoutElement" href="">Sair</a>
       </div>
@@ -61,7 +61,7 @@
         <li @click="$router.push('/reservas')">
           <p>Reservas</p>
         </li>
-        <li>
+        <li @click="$router.push('/contato')">
           <a>Contato</a>
         </li>
          <!-- <li>
@@ -282,12 +282,12 @@ header {
 
 
 <script>
-import LoginView from '@/components/LoginModal.vue'
+import LoginComponent from '@/components/LoginComponent.vue'
 
 export default {
   name: "HeaderComponent",
   components:{
-    LoginView
+    LoginComponent
   },
 };
 </script>
