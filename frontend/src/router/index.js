@@ -23,6 +23,11 @@ const routes = [
       {path: ':name', name: 'reservasOption', component: () => import('../components/ReservasOption.vue')},
       {path: ':name', name: 'reservasOrder', component: () => import('../components/ReservasOrder.vue')}
     ]
+  },
+  {
+    path: '/contato',
+    name: 'Contato',
+    component: () => import('../views/ContatoView.vue')
   }
 ]
 

@@ -1,5 +1,5 @@
 <template>
-    <a href="#" @click="showModal = true">Fazer Login</a>
+  <a href="#" @click="showModal = true">Fazer Login</a>
           <div v-if="showModal" class="modal">
             <div class="modal-content">
               <h2>Login</h2>
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name:'LoginView',
+  name:'LoginComponent',
   data() {
     return {
       showModal: false,
@@ -63,6 +63,7 @@ p{
 }
 
 h2 {
+  text-align: center;
   margin-top: 0;
   color: v.$mainColorYellow;
 }
