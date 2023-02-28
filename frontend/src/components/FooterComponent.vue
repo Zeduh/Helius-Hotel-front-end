@@ -46,9 +46,9 @@
             </div>
         </div>
 
-        <session class="footer-copy">
+        <div class="footer-copy">
             <p>&copy;2022 - Todos os direitos reservados</p>
-        </session>
+        </div>
     </footer>
 </template>
 
