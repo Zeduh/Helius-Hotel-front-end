@@ -44,7 +44,7 @@ textarea {
     padding: 10px;
     margin-top: 10px;
     width: 100%;
-    min-width: 350px;
+    min-width: 300px;
     height: 180px;
 }
 </style>
