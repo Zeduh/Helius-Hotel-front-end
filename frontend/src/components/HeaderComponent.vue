@@ -80,7 +80,7 @@
 <style lang="scss" scoped>
 @use "@/assets/scss/variables" as v;
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 768px) {
   .topBar {
     position: fixed;
     z-index: 1;
@@ -109,7 +109,7 @@
   }
 }
 
-@media screen and (min-width: 550px) {
+@media screen and (min-width: 768px) {
   #mobileMenuDiv {
     visibility: hidden;
   }
@@ -275,6 +275,10 @@ header {
 
       &:hover {
         border-bottom: 0.2rem solid v.$mainColorBlack;
+      }
+
+      @media screen and (max-width: 768px) {
+        margin: 0 .4rem;
       }
     }
   }
