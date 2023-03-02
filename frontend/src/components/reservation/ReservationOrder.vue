@@ -1,20 +1,21 @@
 <template>
   <div>
-    <TituloDescricaoInicial
-      title="Reservas"
+    <TitleInitialDescription
+      title="Resumo do Pedido"
       desc="Para orçamentos de hospedagens, preencha o formulário abaixo."
     />
-    <CounterPage page="1" />
-    <h1>Option</h1>
+    <CounterPage page="3" />
+    <h1>Order</h1>
   </div>
 </template>
 
 <script>
-import TituloDescricaoInicial from "../TituloDescricaoInicial.vue";
+import TitleInitialDescription from "../TitleInitialDescription.vue";
 import CounterPage from "../CounterPage.vue";
+
 export default {
-  name: "ReservasOption",
-  components: { CounterPage, TituloDescricaoInicial },
+  name: "ReservasOrder",
+  components: {CounterPage,TitleInitialDescription},
   created() {
     if (this.$store.state.reservationsSent == false) {
       this.$router.push("/reservas");

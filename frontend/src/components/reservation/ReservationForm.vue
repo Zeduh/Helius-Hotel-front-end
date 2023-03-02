@@ -1,8 +1,8 @@
 !<template>
   <section>
-    <TituloDescricaoInicial
+    <TitleInitialDescription
       title="Reservas"
-      desc="Para orçamentos de hospedagens, preencha o formulário abaixo."
+      desc="Para iniciar com sua reserva, preencha o formulário abaixo."
     />
     <CounterPage page="0"/>
     <form class="form">
@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="textArea-container">
-        <inputForm classInput="totalPeople" labelTitle="Total de Pessoas:" />
+        <inputForm classInput="totalPeople" type="number" labelTitle="Total de Pessoas:" />
         <TextAreaForm labelTitle="Informações Adicionais:" />
       </div>
 
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import TituloDescricaoInicial from "../TituloDescricaoInicial.vue";
+import TitleInitialDescription from "../TitleInitialDescription.vue";
 import inputForm from "../forms/InputForm.vue";
 import SelectForm from "../forms/SelectForm.vue";
 import TextAreaForm from "../forms/TextAreaForm.vue";
@@ -79,7 +79,7 @@ export const qa = (elemento) => {
 
 export default {
   name: "ReservasForm",
-  components: { TituloDescricaoInicial, inputForm, SelectForm, TextAreaForm, CounterPage },
+  components: { TitleInitialDescription, inputForm, SelectForm, TextAreaForm, CounterPage },
   data() {
     return {
       show: true
@@ -147,13 +147,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-}
 
 .form {
   display: flex;
