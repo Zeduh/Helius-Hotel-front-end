@@ -1,6 +1,6 @@
 <template>
     <section>
-        <TituloDescricaoInicial
+        <TitleInitialDescription
           title="Entre em contato conosco"
           desc="Preencha o formulário abaixo e alguém de nossa equipe irá retornar o mais breve possível."
         />
@@ -30,19 +30,14 @@
 </template>
 
 <script>
-import TituloDescricaoInicial from "../components/TituloDescricaoInicial.vue";
+import TitleInitialDescription from "../components/TitleInitialDescription.vue";
 import InputForm from "../components/forms/InputForm.vue";
 import SelectForm from "../components/forms/SelectForm.vue";
 import TextAreaForm from "../components/forms/TextAreaForm.vue";
 
 export default {
-    name: 'ContatoForm',
-    components:{ TituloDescricaoInicial, InputForm, SelectForm, TextAreaForm},
-    data() {
-        return {
-        
-        }
-    }
+    name: 'ContatoView',
+    components:{ TitleInitialDescription, InputForm, SelectForm, TextAreaForm}
 }
 </script>
 

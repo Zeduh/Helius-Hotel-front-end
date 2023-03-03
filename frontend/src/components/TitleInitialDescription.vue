@@ -39,6 +39,7 @@ h1 {
   font-size: 40px;
   margin-bottom: 30px;
   font-weight: normal;
+  text-align: center;
 }
 
 p {

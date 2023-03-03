@@ -97,37 +97,28 @@
     .aboutSection {
         padding-top: 0rem;
     }
-    .experienceDiv {
-        flex-direction: column;
-        flex-wrap: wrap;
-        
-        p {
-            text-align: justify;
-            margin-bottom: 2.5rem;
-        }
-        img {
-            width: 100%;
-        }
-    }
-}
-@media screen and (min-width: 550px) {
-    .experienceDiv {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: center;
-
-        img, p {
-            width: 50%;
-        }
-    }
 }
 
 .aboutSection {
     .experienceDiv {
         display: flex;
+        align-items: center;
 
         img {
             height: 100%;
+            width: 50%;
+        }
+
+        @media screen and (max-width:992px) {
+            flex-direction: column;
+            
+            p {
+                text-align: justify;
+                margin-bottom: 2.5rem;
+            }
+            img {
+                width: 100%;
+            }
         }
     }
 }
@@ -160,35 +151,34 @@
     }
 }
 
-
-@media screen and (max-width: 550px) {
-    .roomCard {
-        width: 100%;
-    }
-}
-@media screen and (min-width: 550px) {
-    .roomCard {
-        width: 48%;
-    }
-}
 .roomsSection {
     background-color: v.$mainColorYellow;
     color: v.$mainColorBlack;
 
     .roomsDivGroup {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        flex-direction: column;
 
         img {
-            width: 50%;
+            max-width: 96%;
             height: 100%;
             border-radius: .8rem;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
         }
         
         .roomsDiv {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+
+            @media screen and (max-width: 992px) {
+                flex-wrap: wrap;
+
+                .roomCard {
+                    width: 100%;
+                }
+            }
         }
         .roomCard {
             display: flex;
@@ -198,6 +188,7 @@
             background-color: v.$mainColorWhite;
             border-radius: 1rem;
             margin: .6rem .6rem;
+            width: 48%;
 
             .roomCardTop {
                 display: flex;
@@ -213,10 +204,6 @@
                 div {
                     margin: auto;
                 }
-            }
-            img {
-                width: 94%;
-                margin-bottom: 1.4rem;
             }
             .roomIcon {
                 font-size: 2rem;

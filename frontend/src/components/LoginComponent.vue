@@ -1,4 +1,5 @@
 <template>
+<div>
   <a href="#" @click="showModal = true">Fazer Login</a>
           <div v-if="showModal" class="modal">
             <div class="modal-content">
@@ -17,6 +18,7 @@
               <button type="button" @click="showModal = false" >Fechar</button>
             </div>
           </div>
+</div>
 </template>
 
 <script>

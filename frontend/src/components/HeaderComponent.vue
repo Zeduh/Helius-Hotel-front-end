@@ -1,5 +1,5 @@
 <template>
-  <header id="headerPage">
+  <header id="headerPage" class="header-wrapper">
     <div class="topBar">
       <div id="mobileMenuDiv">
         <button type="button" id="mobileMenuBtnOpen">
@@ -19,7 +19,7 @@
             <li>
               <a>Acomodações</a>
             </li>
-            <li @click="$router.push({name: 'ReservasOption', params: {name:'option'}})">
+            <li @click="$router.push('/reservas')">
               <a>Reservas</a>
             </li>
             <li @click="$router.push('/contato')">
@@ -29,9 +29,9 @@
               <a>Login</a>
               <button @click="showLoginModal">Login</button>
             </li> -->
-            <li>
+            <!-- <li>
               <a id="signUpBtnSS">Cadastre-se</a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -68,9 +68,9 @@
               <a>Login</a>
               <button @click="showLoginModal">Login</button>
           </li> -->
-        <li>
+        <!-- <li>
           <a id="signUpBtnLS">Cadastre-se</a>
-        </li>
+        </li> -->
       </ul>
     </nav>
   </header>
@@ -78,9 +78,9 @@
 
 
 <style lang="scss" scoped>
-@import "@/assets/scss/_colors.scss";
+@use "@/assets/scss/variables" as v;
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 768px) {
   .topBar {
     position: fixed;
     z-index: 1;
@@ -109,7 +109,7 @@
   }
 }
 
-@media screen and (min-width: 550px) {
+@media screen and (min-width: 768px) {
   #mobileMenuDiv {
     visibility: hidden;
   }
@@ -127,8 +127,7 @@
 header {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  color: $mainColorBlack;
+  color: v.$mainColorBlack;
 }
 
 .topBar {
@@ -137,11 +136,11 @@ header {
   justify-content: space-between;
   align-items: center;
 
-  background-color: $mainColorBlack;
+  background-color: v.$mainColorBlack;
 
   a {
     text-decoration: none;
-    color: $mainColorWhite;
+    color: v.$mainColorWhite;
 
     &:hover {
       text-decoration: underline;
@@ -174,7 +173,7 @@ header {
   position: relative;
   width: 100%;
   height: 18rem;
-  color: $mainColorWhite;
+  color: v.$mainColorWhite;
 
   #blackBackground {
     display: flex;
@@ -195,11 +194,11 @@ header {
 
 #mobileMenuDiv {
   button {
-    background-color: $mainColorBlack;
+    background-color: v.$mainColorBlack;
     border: none;
 
     .menuIcon {
-      color: $mainColorWhite;
+      color: v.$mainColorWhite;
     }
   }
 }
@@ -210,7 +209,7 @@ header {
 
   width: 60vw;
   height: 100vh;
-  background-color: $mainColorBlack;
+  background-color: v.$mainColorBlack;
   position: absolute;
   z-index: 2;
   top: 0;
@@ -223,7 +222,7 @@ header {
 
     padding: 1rem 3rem;
     font-size: 2rem;
-    color: $mainColorWhite;
+    color: v.$mainColorWhite;
   }
 
   ul {
@@ -238,7 +237,7 @@ header {
       margin: 1rem 0;
 
       &:nth-child(7) {
-        background-color: $mainColorYellow;
+        background-color: v.$mainColorYellow;
         padding: 1rem;
         border-radius: 2rem;
       }
@@ -247,14 +246,15 @@ header {
 }
 
 .selected {
-  border-bottom: 0.2rem solid $mainColorBlack;
+  border-bottom: 0.2rem solid v.$mainColorBlack;
 }
 
 .headerMenu {
-  background-color: $mainColorYellow;
+  background-color: v.$mainColorYellow;
 
   ul {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 
     height: 100%;
@@ -269,11 +269,16 @@ header {
 
       a {
         text-decoration: none;
-        color: $mainColorBlack;
+        font-size: auto;
+        color: v.$mainColorBlack;
       }
 
       &:hover {
-        border-bottom: 0.2rem solid $mainColorBlack;
+        border-bottom: 0.2rem solid v.$mainColorBlack;
+      }
+
+      @media screen and (max-width: 768px) {
+        margin: 0 .4rem;
       }
     }
   }
