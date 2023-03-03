@@ -33,13 +33,13 @@ div {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: -15px;
 }
 
 h1 {
   font-size: 40px;
   margin-bottom: 30px;
   font-weight: normal;
+  text-align: center;
 }
 
 p {

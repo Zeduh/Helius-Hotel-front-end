@@ -1,10 +1,10 @@
 <template>
   <div class="count-container">
-    <p class="el">Dados</p>
+    <p class="el">Dados informativos</p>
     <span>></span>
     <p class="el">Escolha sua acomodação</p>
     <span>></span>
-    <p class="el">Reserva Realizada</p>
+    <p class="el">Resumo da reserva</p>
   </div>
 </template>
 
@@ -53,11 +53,12 @@ div {
 span {
     margin-right: 20px;
     margin-left: 20px;
+    font-weight: bold;
 }
 
 
 
 .selected {
-    background-color: red;
+    color: #FFBF00;
 }
 </style>

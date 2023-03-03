@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import ReservasForm from "../components/reservation/ReservasForm.vue";
-import ReservasOption from "../components/reservation/ReservasOption.vue";
-import ReservasOrder from "../components/reservation/ReservasOrder.vue";
+import ReservasForm from "../components/reservation/ReservationForm.vue";
+import ReservasOption from "../components/reservation/ReservationOption.vue";
+import ReservasOrder from "../components/reservation/ReservationOrder.vue";
 
 
 export default {
@@ -54,6 +54,14 @@ export default {
 
 
 <style lang="scss" scoped>
+
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
 
 main {
   display: flex;
