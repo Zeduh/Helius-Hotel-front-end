@@ -37,8 +37,7 @@
       </div>
       <div id="userArea">
         <LoginComponent />
-        <a class="hide" id="usernameElement" href=""></a>
-        <a class="hide" id="logoutElement" href="">Sair</a>
+        <SignUpComponent />
       </div>
     </div>
     <div class="trademarkArea">
@@ -153,6 +152,8 @@ header {
   }
 
   #userArea {
+    display: flex;
+
     a {
       margin: 0 0.5rem;
       padding: 0 0.2rem;
@@ -288,11 +289,13 @@ header {
 
 <script>
 import LoginComponent from '@/components/LoginComponent.vue'
+import SignUpComponent from "./signUp/SignUpComponent.vue";
 
 export default {
   name: "HeaderComponent",
   components:{
-    LoginComponent
-  },
+    LoginComponent,
+    SignUpComponent
+},
 };
 </script>
