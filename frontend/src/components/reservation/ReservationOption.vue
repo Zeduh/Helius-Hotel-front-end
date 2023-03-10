@@ -17,22 +17,30 @@
         <div class="acomod--item1--group2">
           <div class="resume-modal--info">
             <p class="date-res">
-              Quarto<span></span>2x Simples,3x Premium, 4x Bangalo
+              Quarto<span></span>{{choiceRooms}}
             </p>
             <p class="qtServices">
-              Serviços adicionais<span>0</span>
+              Serviços adicionais<span>{{choiceQtdServices}}</span>
               <button class="reviewServices addServices services-buy--s">
                 Revisar
               </button>
             </p>
             <hr />
-            <p class="value">Valor <span class="valueTotal">000</span></p>
+            <p class="value">
+              Valor serviços adicionais <span class="valueTotal">R$ {{valueServicesTotal}}</span>
+            </p>
+            <p class="value">
+              Valor acomodações <span class="valueTotal">R$ 000</span>
+            </p>
+            <p class="value">
+              Valor total <span class="valueTotal">R$ 000</span>
+            </p>
           </div>
           <div class="acomod--item1---columnc_button">
             <button class="acomod-next" @click="closeModalBuy()">
-              Editar escolha
+              Continuar Escolhendo
             </button>
-            <button class="acomod-buy acomod-buy--p">Continuar</button>
+            <button class="acomod-buy acomod-buy--p">Finalizar Pedido</button>
           </div>
         </div>
       </div>
@@ -40,6 +48,7 @@
     <ReservationServicesModal
       v-if="showServices"
       @showModalButton="closeModalServices()"
+      ref="services"
     />
     <ReservationAccommodationsModal
       ref="acomodSimples"
@@ -53,7 +62,7 @@
         String(price.simples.previus.toFixed(2)).replace('.', ',')
       "
       @openModal="openModalServices(1)"
-      @buy="openModalBuy(1)"
+      @buy="buyReservation(1)"
       @addQtd="changeQtd('simples', 'add')"
       @remQtd="changeQtd('simples', 'rem')"
     />
@@ -68,7 +77,7 @@
         String(price.premium.previus.toFixed(2)).replace('.', ',')
       "
       @openModal="openModalServices(2)"
-      @buy="openModalBuy(2)"
+      @buy="buyReservation(2)"
       @addQtd="changeQtd('premium', 'add')"
       @remQtd="changeQtd('premium', 'rem')"
     />
@@ -83,7 +92,7 @@
         String(price.bangalo.previus.toFixed(2)).replace('.', ',')
       "
       @openModal="openModalServices(3)"
-      @buy="openModalBuy(3)"
+      @buy="buyReservation(3)"
       @addQtd="changeQtd('bangalo', 'add')"
       @remQtd="changeQtd('bangalo', 'rem')"
     />
@@ -109,6 +118,9 @@ export default {
       showServices: false,
       fadeShow: false,
       modalBuy: false,
+      choiceRooms: '',
+      choiceQtdServices: 0,
+      valueServicesTotal: '0,00',
       price: {
         simples: {
           previus: 199.9,
@@ -141,8 +153,10 @@ export default {
       document.body.scroll = "no";
     },
     closeModalServices() {
-      document.querySelector(".modal-open2").style.opacity = "0";
       this.fadeShow = false;
+      setTimeout(() => {
+        document.querySelector(".modal-open2").style.opacity = "0";
+      }, 100);
       this.showServices = false;
       this.reloadScrollBars();
     },
@@ -172,7 +186,9 @@ export default {
     },
     closeModalBuy() {
       this.fadeShow = false;
-      document.querySelector(".modal-open").style.opacity = "0";
+      setTimeout(() => {
+        document.querySelector(".modal-open").style.opacity = "0";
+      }, 200);
       this.modalBuy = false;
       this.reloadScrollBars();
     },
@@ -201,6 +217,54 @@ export default {
         this.price.bangalo.current = this.price.bangalo.current / 1.2;
         this.price.bangalo.previus = this.price.bangalo.previus / 1.2;
       }
+    },
+    displayInfos() {
+      const priceServices = localStorage.getItem('valueServices') == null ? '0,00' : localStorage.getItem('valueServices');
+      const qtdServices = localStorage.getItem('qtdServices') == null ? 0 : localStorage.getItem('qtdServices');
+
+      this.valueServicesTotal = priceServices;
+      this.choiceQtdServices = qtdServices;
+    },
+    buyReservation(acomod) {
+      const qtdRoom = document.querySelectorAll(".qtdRoomS");
+      const qtdRoomText = document.querySelectorAll(".qtdRoomP");
+      if (acomod == 1) {
+        if (qtdRoom[0].innerHTML == 0) {
+          alert("Quantidade de quarto invalida");
+          qtdRoomText[0].style.color = "red";
+          return;
+        } else {
+          qtdRoomText.forEach((v) => {
+            v.style.color = "black";
+          });
+        }
+      }
+
+      if (acomod == 2) {
+        if (qtdRoom[1].innerHTML == 0) {
+          alert("Quantidade de quarto invalida");
+          qtdRoomText[1].style.color = "red";
+          return;
+        } else {
+          qtdRoomText.forEach((v) => {
+            v.style.color = "black";
+          });
+        }
+      }
+
+      if (acomod == 3) {
+        if (qtdRoom[2].innerHTML == 0) {
+          alert("Quantidade de quarto invalida");
+          qtdRoomText[2].style.color = "red";
+          return;
+        } else {
+          qtdRoomText.forEach((v) => {
+            v.style.color = "black";
+          });
+        }
+      }
+      this.displayInfos();
+      this.openModalBuy();
     },
   },
   created() {

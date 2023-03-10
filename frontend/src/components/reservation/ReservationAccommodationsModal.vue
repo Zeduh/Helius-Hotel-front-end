@@ -71,7 +71,7 @@
           </div>
           <div class="acomod--item1---columnc----2_group2">
             <button class="acomod-buy acomod-buy--s" @click="$emit('buy')">
-              Escolher
+              Adicionar ao Carrinho
             </button>
           </div>
         </div>
@@ -110,11 +110,15 @@ export default {
     changeQtd(action) {
       if (action == "rem" && this.qtdRoom > 0) {
         this.qtdRoom--;
-        this.$emit('remQtd')
+        if (this.qtdRoom > 0) {
+          this.$emit("remQtd");
+        }
       }
       if (action == "add" && this.qtdRoom < 3) {
         this.qtdRoom++;
-        this.$emit('addQtd')
+        if (this.qtdRoom > 1) {
+          this.$emit("addQtd");
+        }
       }
     },
   },
