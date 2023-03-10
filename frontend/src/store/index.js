@@ -7,6 +7,9 @@ export default createStore({
     reservationsSent: false,
   },
   getters: {
+    getLoginState(state) {
+      return state.state.login
+    }
   },
   mutations: {
     reservationFormChange(state, payLoad) {
