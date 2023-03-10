@@ -9,20 +9,36 @@
             </div>
             <form class="signup-modal__wrapper__modal__form">
                 <label for="name">Nome:</label>
-                <input type="text" name="name" id="name">
+                <input v-model="name" type="text" name="name" id="name">
                 <label for="email">E-mail:</label>
-                <input type="email" name="email" id="email">
+                <input v-model="email" type="email" name="email" id="email">
+                <label for="password">Senha:</label>
+                <input v-model="password" type="password" name="password" id="password">
+                <button type="submit" @click.prevent="sendUser">Registrar</button>
             </form>
         </div>
     </div>
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { useStore } from "vuex";
+
+
+const store = useStore()
 const emits = defineEmits(["closeModal"])
 const props = defineProps(["renderModal"])
 
+const name = ref()
+const email = ref()
+const password = ref()
+
 function closeModal() {
-    emits("closeModal")
+    emits("closeModal", user)
+}
+
+function sendUser() {
+    store.dispatch('addUser', { name: name.value, email: email.value, password: password.value})
 }
 </script>
 
@@ -70,10 +86,24 @@ function closeModal() {
         &__form {
             display: flex;
             flex-direction: column;
-            margin: 1rem 0;
+            margin-top: 1.4rem;
 
             input {
+                width: 100%;
                 height: 2rem;
+                border: none;
+                border-radius: .2rem;
+            }
+
+            button {
+                background-color: v.$mainColorYellow;
+                border: none;
+                width: 100%;
+                height: 2.6rem;
+                border-radius: .2rem;
+                font-size: 1.2rem;
+                cursor: pointer;
+                margin-top: 1rem;
             }
         }
     }
