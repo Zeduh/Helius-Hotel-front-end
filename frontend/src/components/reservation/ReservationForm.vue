@@ -139,7 +139,7 @@ export default {
       if (this.validate()) {
         this.$emit('change');
         this.$store.dispatch("reservationFormChange", true);
-        this.$router.push("reservas/accommodation-options");
+        this.$router.push("reservas/acomodacoes");
       }
     },
   },

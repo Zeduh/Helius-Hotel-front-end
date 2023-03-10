@@ -154,9 +154,6 @@ export default {
     },
     closeModalServices() {
       this.fadeShow = false;
-      setTimeout(() => {
-        document.querySelector(".modal-open2").style.opacity = "0";
-      }, 100);
       this.showServices = false;
       this.reloadScrollBars();
     },
@@ -186,9 +183,6 @@ export default {
     },
     closeModalBuy() {
       this.fadeShow = false;
-      setTimeout(() => {
-        document.querySelector(".modal-open").style.opacity = "0";
-      }, 200);
       this.modalBuy = false;
       this.reloadScrollBars();
     },
@@ -219,8 +213,8 @@ export default {
       }
     },
     displayInfos() {
-      const priceServices = localStorage.getItem('valueServices') == null ? '0,00' : localStorage.getItem('valueServices');
-      const qtdServices = localStorage.getItem('qtdServices') == null ? 0 : localStorage.getItem('qtdServices');
+      const priceServices = localStorage.getItem('valueServices') == 'null' ? '0,00' : localStorage.getItem('valueServices');
+      const qtdServices = localStorage.getItem('qtdServices') == 'null' ? '0' : localStorage.getItem('qtdServices');
 
       this.valueServicesTotal = priceServices;
       this.choiceQtdServices = qtdServices;

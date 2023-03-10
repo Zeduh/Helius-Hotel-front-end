@@ -115,12 +115,11 @@ export default {
       this.checked = [false, false, false, false];
       localStorage.setItem("qtdServices", null);
       localStorage.setItem("valueServices", null);
-      localStorage.setItem("objectServices", []);
+      localStorage.setItem("objectServices", null);
     },
   },
   mounted() {
-    const obj = JSON.parse(localStorage.getItem("objectServices"));
-    console.log(obj);
+    const obj = JSON.parse(localStorage.getItem("objectServices")) == null ? null : JSON.parse(localStorage.getItem("objectServices"));
     if (obj == null) {
       return;
     }

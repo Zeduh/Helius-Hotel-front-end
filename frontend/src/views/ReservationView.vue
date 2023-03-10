@@ -35,7 +35,7 @@ export default {
   },
   mounted() {
 
-    if (this.$route.params.name == 'accommodation-options' && this.$store.state.reservationsSent == true) {
+    if (this.$route.params.name == 'acomodacoes' && this.$store.state.reservationsSent == true) {
       this.formPage = false;
       this.optionPage = true;
       return;
