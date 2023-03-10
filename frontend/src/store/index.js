@@ -4,7 +4,7 @@ export default createStore({
   strict: true,
   state: {
     login: false,
-    reservationsSent: false,
+    reservationsSent: true,
   },
   getters: {
   },
