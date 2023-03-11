@@ -5,11 +5,15 @@ export default createStore({
   state: {
     login: false,
     users: [],
+    loggedUser: null,
     reservationsSent: true,
   },
   getters: {
     getLoginState(state) {
       return state.login
+    },
+    getUsers(state) {
+      return state.users
     }
   },
   mutations: {
@@ -22,6 +26,10 @@ export default createStore({
     addUser(state, user) {
       state.users.push(user)
       localStorage.setItem("usersList", JSON.stringify(state.users))
+    },
+    login(state, user) {
+      state.login = true
+      state.loggedUser = user
     }
   },
   actions: {
@@ -33,6 +41,9 @@ export default createStore({
     },
     addUser(context, payload) {
       context.commit("addUser", payload)
+    },
+    login(context, payload) {
+      context.commit("login", payload)
     }
   },
   modules: {
