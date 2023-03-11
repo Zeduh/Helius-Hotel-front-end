@@ -35,9 +35,9 @@
           </ul>
         </div>
       </div>
-      <div id="userArea">
-        <LoginComponent />
-        <SignUpComponent />
+      <div class="userArea">
+        <LoginComponent class="userArea__btn" />
+        <SignUpComponent class="userArea__btn" />
       </div>
     </div>
     <div class="trademarkArea">
@@ -151,8 +151,12 @@ header {
     padding: 0.2rem 0.4rem;
   }
 
-  #userArea {
+  .userArea {
     display: flex;
+
+    &__btn {
+      margin: 0 .6rem;
+    }
 
     a {
       margin: 0 0.5rem;

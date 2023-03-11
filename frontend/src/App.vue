@@ -25,6 +25,11 @@ h1 {
     margin: 2rem 0;
 }
 
+a {
+    text-decoration: none;
+    color: v.$mainColorWhite;
+}
+
 section {
     width: 100%;
     overflow: hidden;
