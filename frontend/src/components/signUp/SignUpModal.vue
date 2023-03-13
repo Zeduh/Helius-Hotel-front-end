@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onBeforeMount } from "vue";
 import { useStore } from "vuex";
 
 
@@ -34,12 +34,16 @@ const email = ref()
 const password = ref()
 
 function closeModal() {
-    emits("closeModal", user)
+    emits("closeModal")
 }
 
 function sendUser() {
-    store.dispatch('addUser', { name: name.value, email: email.value, password: password.value})
+    store.dispatch("addUser", { name: name.value, email: email.value, password: password.value})
 }
+
+onBeforeMount(() => {
+    store.dispatch("initializeStore")
+})
 </script>
 
 <style scoped lang="scss">

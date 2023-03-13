@@ -6,12 +6,12 @@
               <h2>Login</h2>
               <form>
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email">
+                <input v-model="email" type="email" id="email" name="email">
 
                 <label for="senha">Senha:</label>
-                <input type="password" id="password" name="password">
+                <input v-model="password" type="password" id="password" name="password">
 
-                <button type="submit">Entrar</button>
+                <button @click.prevent="tryLogin" type="submit">Entrar</button>
               </form>
               <p><a href="#">Esqueci minha senha</a></p>
               <p>Não tem conta? <a href="#">Cadastre-se</a></p>
@@ -27,12 +27,31 @@ export default {
   data() {
     return {
       showModal: false,
+      email: "",
+      password: ""
     };
   },
   methods: {
     close() {
       this.showModal = false;
     },
+    tryLogin() {
+      // verify if user exists
+      const users = this.$store.getters.getUsers
+      let checkUser = null
+
+      users.forEach(user => {
+        user.email === this.email ? checkUser = user : null
+      })
+
+      if (checkUser) {
+        checkUser.password === this.password ?
+        (this.$store.dispatch("login", checkUser),
+        this.showModal = false,
+        alert("Login realizado com sucesso!"))
+        : alert("Usuário ou senha incorretos")
+      }
+    }
   },
 }
 </script>

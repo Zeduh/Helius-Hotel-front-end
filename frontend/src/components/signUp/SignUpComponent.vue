@@ -1,6 +1,8 @@
 <template>
-    <a href="#" @click="toggleSignUpModal">Cadastre-se</a>
-    <SignUpModal @close-modal="toggleSignUpModal" :render-modal="showModal" />
+    <div class="signup-component__wrapper">
+        <a href="#" @click="toggleSignUpModal">Cadastre-se</a>
+        <SignUpModal @close-modal="toggleSignUpModal" :render-modal="showModal" />
+    </div>
 </template>
 
 <script setup>
