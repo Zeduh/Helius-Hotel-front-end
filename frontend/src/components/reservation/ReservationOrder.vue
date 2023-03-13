@@ -1,10 +1,6 @@
 <template>
   <div>
-    <TitleInitialDescription
-      title="Resumo do Pedido"
-      desc="Para orçamentos de hospedagens, preencha o formulário abaixo."
-    />
-    <CounterPage page="3" />
+ 
     <h1>Order</h1>
   </div>
 </template>

@@ -71,7 +71,7 @@
           </div>
           <div class="acomod--item1---columnc----2_group2">
             <button class="acomod-buy acomod-buy--s" @click="$emit('buy')">
-              Adicionar ao Carrinho
+              Adicionar
             </button>
           </div>
         </div>

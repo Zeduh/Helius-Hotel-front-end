@@ -4,7 +4,7 @@
       title="Reservas"
       desc="Para iniciar com sua reserva, preencha o formulário abaixo."
     />
-    <CounterPage page="0"/>
+    <CounterPage page="0" />
     <form class="form">
       <div class="column-container">
         <div class="column column-left">
@@ -52,8 +52,12 @@
         </div>
       </div>
       <div class="textArea-container">
-        <inputForm classInput="totalPeople" type="number" labelTitle="Total de Pessoas:" />
-        <TextAreaForm labelTitle="Informações Adicionais:" />
+        <inputForm
+          classInput="totalPeople"
+          type="number"
+          labelTitle="Total de Pessoas:"
+        />
+        <TextAreaForm labelTitle="Informações:" />
       </div>
 
       <button class="submitForm" @click.prevent="submitForm()">
@@ -79,13 +83,19 @@ export const qa = (elemento) => {
 
 export default {
   name: "ReservasForm",
-  components: { TitleInitialDescription, inputForm, SelectForm, TextAreaForm, CounterPage },
+  components: {
+    TitleInitialDescription,
+    inputForm,
+    SelectForm,
+    TextAreaForm,
+    CounterPage,
+  },
   data() {
     return {
-      show: true
+      show: true,
     };
   },
-  emits: ['change'],
+  emits: ["change"],
   methods: {
     errorFormAlert(el) {
       alert("Existem campos invalidos, tente novamente.");
@@ -101,6 +111,17 @@ export default {
         field.style.border = "1px solid #000";
         return true;
       }
+    },
+
+    formatDateValue(value) {
+      let elArray = value.split("-");
+      let arrayDay = [elArray[2]];
+      let arrayMonth = [elArray[1]];
+      let arrayYear = [elArray[0]];
+      let newArray = [arrayDay[0], arrayMonth[0], arrayYear[0]];
+      const string = newArray.join("/");
+
+      return string;
     },
 
     validate() {
@@ -137,7 +158,34 @@ export default {
 
     submitForm() {
       if (this.validate()) {
-        this.$emit('change');
+        const inputCheckIn = q(".inputCheckIn");
+        const inputCheckOut = q(".inputCheckOut");
+        const inputName = q(".inputName");
+        const inputEmail = q(".inputEmail");
+        const inputTel = q(".inputTel");
+        const selectOne = q(".selectOne");
+        const selectTwo = q(".selectTwo");
+        const selectThree = q(".selectThree");
+        const selectFor = q(".selectFor");
+        const totalPeople = q(".totalPeople");
+        const textAreaInfos = q('.inputForm');
+
+        const data = {
+          nome: inputName.value,
+          email: inputEmail.value,
+          telefone: inputTel.value,
+          dataCheckIn: this.formatDateValue(inputCheckIn.value),
+          dataCheckOut: this.formatDateValue(inputCheckOut.value),
+          qtdCasal: selectThree.value,
+          qtdCrianças: selectOne.value,
+          qtdPreAdolecente: selectTwo.value,
+          qtdAdolecente: selectFor.value,
+          totalPeople: totalPeople.value,
+          infos: textAreaInfos.value
+        };
+        localStorage.setItem("dataUser", JSON.stringify(data));
+
+        this.$emit("change");
         this.$store.dispatch("reservationFormChange", true);
         this.$router.push("reservas/acomodacoes");
       }
@@ -147,7 +195,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .form {
   display: flex;
   justify-content: center;

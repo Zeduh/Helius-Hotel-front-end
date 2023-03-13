@@ -69,7 +69,7 @@
 let array = [];
 export default {
   name: "ReservationServicesModal",
-  emits: ["showModalButton"],
+  emits: ["showModalButton","update"],
   data() {
     return {
       valueTotal: 0,
@@ -93,14 +93,15 @@ export default {
       }
     },
     saveInfo() {
+      const chkBox = document.querySelectorAll('.chk');
       let value = 0;
       let qtdServices = 0;
       value = this.valueTotal;
-      for (let i in this.checked) {
-        if (this.checked[i] == true) {
+      chkBox.forEach(v => {
+        if (v.checked) {
           qtdServices++;
         }
-      }
+      })
       const chk = document.querySelectorAll(".active");
       chk.forEach((v) => {
         array.push(v.className.split(" ")[1]);
@@ -109,6 +110,7 @@ export default {
       array = [];
       localStorage.setItem("qtdServices", qtdServices);
       localStorage.setItem("valueServices", value);
+      this.$emit('update');
     },
     clearServices() {
       this.valueTotal = 0.0;
