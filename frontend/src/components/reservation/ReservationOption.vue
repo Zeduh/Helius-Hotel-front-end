@@ -16,39 +16,55 @@
         <hr />
         <div class="acomod--item1--group2">
           <div class="resume-modal--info">
-            <p class="date-res">
-              Quarto<span></span>{{choiceRooms}}
-            </p>
+            <div
+              class="date-res"
+              v-for="list in roomListRemoveDuplicate"
+              :key="list"
+            >
+              <CountRoomList
+                :roomName="list"
+                ref="countRoomL"
+                @update="displayInfos()"
+              />
+            </div>
             <p class="qtServices">
-              Serviços adicionais<span>{{choiceQtdServices}}</span>
-              <button class="reviewServices addServices services-buy--s">
+              Serviços adicionais<span>{{ choiceQtdServices }}</span>
+              <button
+                class="reviewServices addServices services-buy--s"
+                @click="openModalServices()"
+              >
                 Revisar
               </button>
             </p>
             <hr />
             <p class="value">
-              Valor serviços adicionais <span class="valueTotal">R$ {{valueServicesTotal}}</span>
+              Valor serviços adicionais
+              <span class="valueTotal">R$ {{ valueServicesTotal }}</span>
             </p>
             <p class="value">
-              Valor acomodações <span class="valueTotal">R$ 000</span>
+              Valor acomodações
+              <span class="valueTotal">R$ {{ valueAcomodTotal }}</span>
             </p>
             <p class="value">
-              Valor total <span class="valueTotal">R$ 000</span>
+              Valor total <span class="valueTotal">R$ {{ valueTotal }}</span>
             </p>
           </div>
           <div class="acomod--item1---columnc_button">
             <button class="acomod-next" @click="closeModalBuy()">
               Continuar Escolhendo
             </button>
-            <button class="acomod-buy acomod-buy--p">Finalizar Pedido</button>
+            <button class="acomod-buy acomod-buy--p" @click="nextPage()">
+              Finalizar Pedido
+            </button>
           </div>
         </div>
       </div>
     </div>
     <ReservationServicesModal
       v-if="showServices"
-      @showModalButton="closeModalServices()"
+      @showModalButton="showModalServices()"
       ref="services"
+      @update="displayInfos()"
     />
     <ReservationAccommodationsModal
       ref="acomodSimples"
@@ -104,6 +120,7 @@ import TitleInitialDescription from "../TitleInitialDescription.vue";
 import CounterPage from "../CounterPage.vue";
 import ReservationAccommodationsModal from "./ReservationAccommodationsModal.vue";
 import ReservationServicesModal from "./ReservationServicesModal.vue";
+import CountRoomList from "./CountRoomList.vue";
 
 export default {
   name: "ReservasOption",
@@ -112,15 +129,21 @@ export default {
     TitleInitialDescription,
     ReservationAccommodationsModal,
     ReservationServicesModal,
+    CountRoomList,
   },
   data() {
     return {
       showServices: false,
       fadeShow: false,
       modalBuy: false,
-      choiceRooms: '',
+      showCountRoomList: true,
+      choiceRooms: "",
+      roomList: [],
+      roomQtd: 0,
       choiceQtdServices: 0,
-      valueServicesTotal: '0,00',
+      valueServicesTotal: "0,00",
+      valueAcomodTotal: "0,00",
+      valueTotal: "0,00",
       price: {
         simples: {
           previus: 199.9,
@@ -143,7 +166,32 @@ export default {
       ],
     };
   },
+  emits: ['change'],
+  computed: {
+    roomListRemoveDuplicate() {
+      const novaArr = [...new Set(this.roomList)];
+
+      return novaArr;
+    },
+  },
   methods: {
+    countRoomLogic() {
+      const el = document.querySelectorAll(".date-res");
+
+      el.forEach((v) => {
+        const dad = el.parentNode;
+        this.roomQtd = dad.innerHTML;
+      });
+    },
+    showModalServices() {
+      if (this.modalBuy == true) {
+        this.closeModalServices();
+        this.fadeShow = true;
+        this.displayInfos();
+      } else {
+        this.closeModalServices();
+      }
+    },
     reloadScrollBars() {
       document.documentElement.style.overflow = "auto";
       document.body.scroll = "yes";
@@ -213,11 +261,112 @@ export default {
       }
     },
     displayInfos() {
-      const priceServices = localStorage.getItem('valueServices') == 'null' ? '0,00' : localStorage.getItem('valueServices');
-      const qtdServices = localStorage.getItem('qtdServices') == 'null' ? '0' : localStorage.getItem('qtdServices');
+      const priceServices =
+        localStorage.getItem("valueServices") == "null"
+          ? 0
+          : localStorage.getItem("valueServices");
+      const qtdServices =
+        localStorage.getItem("qtdServices") == "null"
+          ? "0"
+          : localStorage.getItem("qtdServices");
 
       this.valueServicesTotal = priceServices;
       this.choiceQtdServices = qtdServices;
+
+      let priceS = 0;
+      let priceP = 0;
+      let priceB = 0;
+
+      const price = document.querySelectorAll(".price--s");
+      setTimeout(() => {
+        this.$refs.countRoomL.forEach((v) => {
+          if (v.$props.roomName == "Quarto Simples" && v.$data.show == true) {
+            const el = v.$refs.countRoomList;
+            if (+el.innerHTML.replace("x", "") == 1) {
+              priceS = 99.9 * 1;
+            }
+            if (+el.innerHTML.replace("x", "") == 2) {
+              priceS = 99.9 * 1.2;
+            }
+            if (+el.innerHTML.replace("x", "") == 3) {
+              priceS = 99.9 * 1.2 * 1.2;
+            }
+          }
+
+          if (v.$props.roomName == "Quarto Premium" && v.$data.show == true) {
+            const el = v.$refs.countRoomList;
+            if (+el.innerHTML.replace("x", "") == 1) {
+              priceP = 199.9 * 1;
+            }
+            if (+el.innerHTML.replace("x", "") == 2) {
+              priceP = 199.9 * 1.2;
+            }
+            if (+el.innerHTML.replace("x", "") == 3) {
+              priceP = 199.9 * 1.2 * 1.2;
+            }
+          }
+
+          if (v.$props.roomName == "Quarto Bangalo" && v.$data.show == true) {
+            const el = v.$refs.countRoomList;
+            if (+el.innerHTML.replace("x", "") == 1) {
+              priceB = 299.9 * 1;
+            }
+            if (+el.innerHTML.replace("x", "") == 2) {
+              priceB = 299.9 * 1.2;
+            }
+            if (+el.innerHTML.replace("x", "") == 3) {
+              priceB = 299.9 * 1.2 * 1.2;
+            }
+          }
+        });
+      }, 2);
+      setTimeout(() => {
+        this.valueAcomodTotal = String(
+          (priceS + priceP + priceB).toFixed(2)
+        ).replace(".", ",");
+        this.valueTotal = String(
+          (priceS + priceP + priceB + +priceServices).toFixed(2)
+        ).replace(".", ",");
+      }, 5);
+    },
+    countRoom(type) {
+      const qtd = document.querySelectorAll(".qtdRoomS");
+      if (type == 1) {
+        this.roomList.push("Quarto Simples");
+        setTimeout(() => {
+          this.$refs.countRoomL.forEach((v) => {
+            if (v.$props.roomName == "Quarto Simples") {
+              v.$data.show = true;
+              v.$data.count = qtd[0].innerHTML;
+              this.displayInfos();
+            }
+          });
+        }, 2);
+      }
+      if (type == 2) {
+        this.roomList.push("Quarto Premium");
+        setTimeout(() => {
+          this.$refs.countRoomL.forEach((v) => {
+            if (v.$props.roomName == "Quarto Premium") {
+              v.$data.show = true;
+              v.$data.count = qtd[1].innerHTML;
+              this.displayInfos();
+            }
+          });
+        }, 2);
+      }
+      if (type == 3) {
+        this.roomList.push("Quarto Bangalo");
+        setTimeout(() => {
+          this.$refs.countRoomL.forEach((v) => {
+            if (v.$props.roomName == "Quarto Bangalo") {
+              v.$data.show = true;
+              v.$data.count = qtd[2].innerHTML;
+              this.displayInfos();
+            }
+          });
+        }, 2);
+      }
     },
     buyReservation(acomod) {
       const qtdRoom = document.querySelectorAll(".qtdRoomS");
@@ -232,6 +381,8 @@ export default {
             v.style.color = "black";
           });
         }
+
+        this.countRoom(acomod);
       }
 
       if (acomod == 2) {
@@ -244,6 +395,7 @@ export default {
             v.style.color = "black";
           });
         }
+        this.countRoom(acomod);
       }
 
       if (acomod == 3) {
@@ -256,9 +408,15 @@ export default {
             v.style.color = "black";
           });
         }
+
+        this.countRoom(acomod);
       }
       this.displayInfos();
       this.openModalBuy();
+    },
+    nextPage() {
+      this.$emit("change");
+      this.$router.push("pedido-finalizado");
     },
   },
   created() {

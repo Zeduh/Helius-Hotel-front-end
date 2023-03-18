@@ -1,7 +1,7 @@
 <template>
   <main>
-    <ReservasForm ref="form" v-if="formPage" @change="changeStatusShow()"/>
-    <ReservasOption v-if="optionPage"/>
+    <ReservasForm ref="form" v-if="formPage" @change="changeStatusFormShow()"/>
+    <ReservasOption v-if="optionPage" @change="changeStatusOptionShow()"/>
     <ReservasOrder v-if="orderPage"/>
   </main>
 </template>
@@ -23,9 +23,13 @@ export default {
     };
   },
   methods: {
-    changeStatusShow() {
+    changeStatusFormShow() {
       this.formPage = false;
       this.optionPage = true;
+    },
+    changeStatusOptionShow() {
+      this.optionPage = false;
+      this.orderPage = true;
     },
     pageNumber() {
       if(this.formPage) return 1;
@@ -35,15 +39,18 @@ export default {
   },
   mounted() {
 
-    if (this.$route.params.name == 'acomodacoes' && this.$store.state.reservationsSent == true) {
+    if (this.$route.path == '/reservas/acomodacoes' && this.$store.state.reservationsSent == true) {
       this.formPage = false;
+      this.orderPage = false;
       this.optionPage = true;
       return;
     }
 
-    if (this.$route.params.name == 'order' && this.$store.state.reservationsSent == true) {
+    if (this.$route.path == '/reservas/pedido-finalizado' && this.$store.state.reservationsSent == true) {
       this.formPage = false;
+      this.optionPage = false;
       this.orderPage = true;
+      console.log('foi')
       return;
     } 
 

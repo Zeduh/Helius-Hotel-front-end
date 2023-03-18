@@ -12,8 +12,8 @@ const routes = [
     name: 'reservas',
     component: () => import('../views/ReservationView.vue'),
     children: [
-      {path: '/acomodacoes', name: 'reservasOption', component: () => import('../components/reservation/ReservationOption.vue')},
-      {path: ':name', name: 'reservasOrder', component: () => import('../components/reservation/ReservationOrder.vue')}
+      {path: '/reservas/acomodacoes', name: 'reservasOption', component: () => import('../components/reservation/ReservationOption.vue')},
+      {path: '/reservas/pedido-finalizado', name: 'reservasOrder', component: () => import('../components/reservation/ReservationOrder.vue')}
     ]
   },
   {
