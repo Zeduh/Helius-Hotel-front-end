@@ -14,6 +14,15 @@ export default createStore({
     },
     getUsers(state) {
       return state.users
+    },
+    getUsersEmails(state) {
+      const emailsList = []
+
+      state.users.length > 0 ? state.users.forEach(user => {
+        emailsList.push(user.email)
+      }) : null
+
+      return emailsList
     }
   },
   mutations: {
