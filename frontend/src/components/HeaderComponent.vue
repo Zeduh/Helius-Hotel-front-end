@@ -16,7 +16,7 @@
             <li>
               <a>O Hotel</a>
             </li>
-            <li>
+            <li @click="$router.push('/acomodacoes')">
               <a>Acomodações</a>
             </li>
             <li @click="$router.push('/reservas')">
@@ -54,7 +54,7 @@
         <li>
           <a>O Hotel</a>
         </li>
-        <li>
+        <li @click="$router.push({path: 'acomodacoes'})">
           <a>Acomodações</a>
         </li>
         <li @click="$router.push('/reservas')">

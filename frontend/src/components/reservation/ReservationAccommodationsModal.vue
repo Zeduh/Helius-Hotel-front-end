@@ -14,7 +14,7 @@
           <div class="acomod--item1---columnr_info">
             <div class="acomod--item1---columnr_info-qtPeople">
               <img :src="require('@/assets/images/svgexport-36.svg')" />
-              <p>3 Pessoas</p>
+              <p>{{numberPeople}} Pessoas</p>
             </div>
             <div class="acomod--item1---columnr_info-look">
               <img :src="require('@/assets/images/svgexport-37.svg')" />
@@ -104,6 +104,9 @@ export default {
     previousPrice: {
       type: [String, Number],
     },
+    numberPeople: {
+      type: [String, Number]
+    }
   },
   emits: ["openModal", "buy", "addQtd", "remQtd"],
   methods: {

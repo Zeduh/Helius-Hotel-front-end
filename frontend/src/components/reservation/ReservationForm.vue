@@ -2,7 +2,7 @@
   <section>
     <TitleInitialDescription
       title="Reservas"
-      desc="Para iniciar com sua reserva, preencha o formulário abaixo."
+      desc="Para iniciar com a sua reserva, preencha o formulário abaixo."
     />
     <CounterPage page="0" />
     <form class="form">
