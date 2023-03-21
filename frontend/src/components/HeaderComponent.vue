@@ -169,7 +169,7 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: end;
+  align-items: flex-end;
 
   background-image: url("../assets/images/hotel01.jpg");
   filter: brightness(100%) saturate(50%);
@@ -223,7 +223,7 @@ header {
 
   #mobileMenuBtnClose {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
 
     padding: 1rem 3rem;
     font-size: 2rem;
