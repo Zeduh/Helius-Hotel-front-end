@@ -57,7 +57,7 @@
         <li @click="$router.push({path: 'acomodacoes'})">
           <a>Acomodações</a>
         </li>
-        <li @click="$router.push('/reservas')">
+        <li v-if="$store.state.login" @click="$router.push('/reservas')">
           <p>Reservas</p>
         </li>
         <li @click="$router.push('/contato')">
