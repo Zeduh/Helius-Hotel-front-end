@@ -49,7 +49,9 @@ export default {
         (this.$store.dispatch("login", checkUser),
         this.showModal = false,
         alert("Login realizado com sucesso!"))
-        : alert("Usuário ou senha incorretos")
+        : alert("Senha incorreta")
+      } else {
+        alert("E-mail incorreto!")
       }
     }
   },
