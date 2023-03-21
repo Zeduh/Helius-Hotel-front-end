@@ -35,7 +35,7 @@ export default {
 <style lang="scss" scoped>
 .accomodations-nav {
   display: flex;
-  margin-top: 70px;
+  margin-top: 40px;
   & ul {
     display: flex;
     justify-content: center;

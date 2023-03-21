@@ -32,7 +32,7 @@
         desc3="01 Sala de estar"
         desc4="01 Sala de estar"
         :image="require('../assets/images/quarto_simples.jpg')"
-        @reservationPage="$router.push('/reservas')"
+        @reservationPage="skipPage()"
       />
       <AccommodationsModal
         roomName="Quarto Premium"
@@ -41,7 +41,7 @@
         desc3="02 Sala de estar"
         desc4="02 Sala de estar"
         :image="require('../assets/images/quarto_premium.jpg')"
-        @reservationPage="$router.push('/reservas')"
+        @reservationPage="skipPage()"
       />
       <AccommodationsModal
         roomName="Quarto Bangalô"
@@ -50,7 +50,7 @@
         desc3="03 Sala de estar"
         desc4="03 Sala de estar"
         :image="require('../assets/images/bangalo04.jpg')"
-        @reservationPage="$router.push('/reservas')"
+        @reservationPage="skipPage()"
       />
     </div>
   </section>
@@ -70,10 +70,17 @@ export default {
     };
   },
   methods: {
+    skipPage() {
+      if(this.$store.state.login == false) {
+        alert('Você precisa estar logado para fazer uma reserva.');
+      } else {
+        this.$router.push('/reservas');
+      }
+    },
     scrollPage(type) {
       if (type == 1) {
         window.scrollTo({
-          top: 1050,
+          top: 1000,
           behavior: "smooth",
         });
       }

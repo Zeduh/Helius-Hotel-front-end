@@ -16,7 +16,7 @@ export default {
   components: { ReservasForm, ReservasOption, ReservasOrder },
   data() {
     return {
-      formPage: true,
+      formPage: false,
       optionPage: false,
       orderPage: false,
     };
@@ -37,18 +37,21 @@ export default {
     },
   },
   mounted() {
-    if (
-      this.$route.path == "/reservas"
-    ) {
+    if (this.$route.path == "/reservas" && this.$store.state.login == true) {
       this.formPage = true;
       this.orderPage = false;
       this.optionPage = false;
+      return;
+    } else {
+      this.$router.push("/");
+      alert("Você precisa estar logado para fazer uma reserva.");
       return;
     }
 
     if (
       this.$route.path == "/reservas/acomodacoes" &&
-      this.$store.state.reservationsSent == true
+      this.$store.state.reservationsSent == true &&
+      this.$store.state.login == true
     ) {
       this.formPage = false;
       this.orderPage = false;
@@ -58,12 +61,12 @@ export default {
 
     if (
       this.$route.path == "/reservas/pedido-finalizado" &&
-      this.$store.state.reservationsSent == true
+      this.$store.state.reservationsSent == true &&
+      this.$store.state.login == true
     ) {
       this.formPage = false;
       this.optionPage = false;
       this.orderPage = true;
-      console.log("foi");
       return;
     }
 

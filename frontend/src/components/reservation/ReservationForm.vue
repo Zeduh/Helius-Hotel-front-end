@@ -202,7 +202,7 @@ export default {
       if (!this.validateEmptyFieldModal(selectThree)) return false;
       if (!this.validateEmptyFieldModal(selectFor)) return false;
       if (!this.validateEmptyFieldModal(totalPeople)) return false;
-      if (totalPeople.value > 5) {
+      if (totalPeople.value > 5 || totalPeople.value < 0) {
         alert("Só é possivel 5 pessoas por reserva.");
         totalPeople.value = "";
         return false;
