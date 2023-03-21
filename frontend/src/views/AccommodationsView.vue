@@ -17,29 +17,93 @@
       </p>
     </TitleInitialDescription>
 
-    <SearchMenu :acomodNames="accommodations" />
+    <SearchMenu
+      :acomodNames="accommodations"
+      @scrollSimple="scrollPage(1)"
+      @scrollPremium="scrollPage(2)"
+      @scrollBangalo="scrollPage(3)"
+    />
+
+    <div class="accommodations-bedrooms">
+      <AccommodationsModal
+        roomName="Quarto Simples"
+        desc1="01 Suíte"
+        desc2="01 Sala de estar"
+        desc3="01 Sala de estar"
+        desc4="01 Sala de estar"
+        :image="require('../assets/images/quarto_simples.jpg')"
+        @reservationPage="$router.push('/reservas')"
+      />
+      <AccommodationsModal
+        roomName="Quarto Premium"
+        desc1="02 Suíte"
+        desc2="02 Sala de estar"
+        desc3="02 Sala de estar"
+        desc4="02 Sala de estar"
+        :image="require('../assets/images/quarto_premium.jpg')"
+        @reservationPage="$router.push('/reservas')"
+      />
+      <AccommodationsModal
+        roomName="Quarto Bangalô"
+        desc1="03 Suíte"
+        desc2="03 Sala de estar"
+        desc3="03 Sala de estar"
+        desc4="03 Sala de estar"
+        :image="require('../assets/images/bangalo04.jpg')"
+        @reservationPage="$router.push('/reservas')"
+      />
+    </div>
   </section>
 </template>
 
 <script>
 import TitleInitialDescription from "../components/TitleInitialDescription.vue";
 import SearchMenu from "../components/SearchMenu.vue";
+import AccommodationsModal from "../components/accommodations/AccommodationsModal.vue";
 
 export default {
   name: "AccommodationsView",
-  components: { TitleInitialDescription, SearchMenu },
+  components: { TitleInitialDescription, SearchMenu, AccommodationsModal },
   data() {
     return {
-        accommodations: ['Simples','Premium','Bangalô']
-    }
+      accommodations: ["Simples", "Premium", "Bangalô"],
+    };
   },
-  mounted() {
-    
-  }
+  methods: {
+    scrollPage(type) {
+      if (type == 1) {
+        window.scrollTo({
+          top: 1050,
+          behavior: "smooth",
+        });
+      }
+      if (type == 2) {
+        window.scrollTo({
+          top: 1800,
+          behavior: "smooth",
+        });
+      }
+      if (type == 3) {
+        window.scrollTo({
+          top: 2400,
+          behavior: "smooth",
+        });
+      }
+    },
+  },
+  mounted() {},
 };
 </script>
 
 <style lang="scss" scoped>
+.accommodations-bedrooms {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 95%;
+}
+
 section {
   display: flex;
   justify-content: center;
