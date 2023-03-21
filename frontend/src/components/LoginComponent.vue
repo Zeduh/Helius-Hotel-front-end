@@ -42,6 +42,8 @@ export default {
       const users = this.$store.getters.getUsers
       let checkUser = null
 
+      if (this.loginState) { alert("Você já está logado"); return }
+
       users.forEach(user => {
         user.email === this.email ? checkUser = user : null
       })
@@ -59,6 +61,11 @@ export default {
       }
     }
   },
+  computed: {
+    loginState() {
+      return this.$store.getters.getLoginState
+    }
+  }
 }
 </script>
 
