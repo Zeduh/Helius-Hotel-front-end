@@ -77,6 +77,7 @@
       :previousPrice="
         String(price.simples.previus.toFixed(2)).replace('.', ',')
       "
+      numberPeople="3"
       @openModal="openModalServices(1)"
       @buy="buyReservation(1)"
       @addQtd="changeQtd('simples', 'add')"
@@ -92,6 +93,7 @@
       :previousPrice="
         String(price.premium.previus.toFixed(2)).replace('.', ',')
       "
+      numberPeople="4"
       @openModal="openModalServices(2)"
       @buy="buyReservation(2)"
       @addQtd="changeQtd('premium', 'add')"
@@ -107,6 +109,7 @@
       :previousPrice="
         String(price.bangalo.previus.toFixed(2)).replace('.', ',')
       "
+      numberPeople="5"
       @openModal="openModalServices(3)"
       @buy="buyReservation(3)"
       @addQtd="changeQtd('bangalo', 'add')"
@@ -166,7 +169,7 @@ export default {
       ],
     };
   },
-  emits: ['change'],
+  emits: ["change"],
   computed: {
     roomListRemoveDuplicate() {
       const novaArr = [...new Set(this.roomList)];
