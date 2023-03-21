@@ -1,3 +1,4 @@
+import { faTruckField } from '@fortawesome/free-solid-svg-icons'
 import { createStore } from 'vuex'
 
 export default createStore({
@@ -6,7 +7,7 @@ export default createStore({
     login: false,
     users: [],
     loggedUser: null,
-    reservationsSent: true,
+    reservationsSent: false,
   },
   getters: {
     getLoginState(state) {

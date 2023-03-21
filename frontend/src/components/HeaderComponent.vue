@@ -16,7 +16,7 @@
             <li>
               <a>O Hotel</a>
             </li>
-            <li>
+            <li @click="$router.push('/acomodacoes')">
               <a>Acomodações</a>
             </li>
             <li @click="$router.push('/reservas')">
@@ -54,10 +54,10 @@
         <li>
           <a>O Hotel</a>
         </li>
-        <li>
+        <li @click="$router.push({path: 'acomodacoes'})">
           <a>Acomodações</a>
         </li>
-        <li @click="$router.push('/reservas')">
+        <li v-if="$store.state.login" @click="$router.push('/reservas')">
           <p>Reservas</p>
         </li>
         <li @click="$router.push('/contato')">
@@ -169,7 +169,7 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: end;
+  align-items: flex-end;
 
   background-image: url("../assets/images/hotel01.jpg");
   filter: brightness(100%) saturate(50%);
@@ -223,7 +223,7 @@ header {
 
   #mobileMenuBtnClose {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
 
     padding: 1rem 3rem;
     font-size: 2rem;

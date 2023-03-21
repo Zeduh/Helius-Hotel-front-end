@@ -2,7 +2,7 @@
   <section>
     <TitleInitialDescription
       title="Reservas"
-      desc="Para iniciar com sua reserva, preencha o formulário abaixo."
+      desc="Para iniciar com a sua reserva, preencha o formulário abaixo."
     />
     <CounterPage page="0" />
     <form class="form">
@@ -22,7 +22,7 @@
           />
         </div>
         <div class="column column-center">
-          <inputForm labelTitle="Email:" type="email" classInput="inputEmail" />
+          <inputForm labelTitle="CPF:" type="text" classInput="inputCpf" />
           <inputForm
             labelTitle="Check-Out:"
             type="date"
@@ -36,7 +36,7 @@
           />
         </div>
         <div class="column column-right">
-          <inputForm labelTitle="Telefone:" type="tel" classInput="inputTel" />
+          <inputForm labelTitle="Data de Nascimento:" type="date" classInput="inputDateN" />
           <SelectForm
             classInput="selectThree"
             labelTitle="CASAL (INFORME QUANTIDADE):"
@@ -124,22 +124,77 @@ export default {
       return string;
     },
 
+    validateCPF() {
+      class ValidaCPF {
+        constructor(cpfRecebido) {
+          this.cpfRecebido = cpfRecebido;
+          Object.defineProperty(this, "cpfLimpo", {
+            get: () => {
+              return this.cpfRecebido.replace(/\D+/g, "");
+            },
+            enumerable: false,
+            configurable: false,
+          });
+        }
+
+        eSequencia() {
+          return (
+            this.cpfLimpo.charAt(0).repeat(this.cpfLimpo.length) ===
+            this.cpfLimpo
+          );
+        }
+
+        valida() {
+          if (!this.cpfLimpo) return false;
+          if (this.cpfLimpo.length !== 11) return false;
+          if (this.eSequencia()) return false;
+          const cpfParcial = this.cpfLimpo.slice(0, -2);
+          const digito1 = ValidaCPF.criaDigito(cpfParcial);
+          const digito2 = ValidaCPF.criaDigito(cpfParcial + digito1);
+          const cpfNovo = cpfParcial + digito1 + digito2;
+          return cpfNovo === this.cpfLimpo;
+        }
+
+        static criaDigito(cpfParcial) {
+          const cpfArray = Array.from(cpfParcial);
+          let regressivo = cpfArray.length + 1;
+          const total = cpfArray.reduce((ac, val) => {
+            ac += regressivo * Number(val);
+            regressivo--;
+            return ac;
+          }, 0);
+
+          const digito = 11 - (total % 11);
+          return digito > 9 ? "0" : String(digito);
+        }
+      }
+
+      const inputCpf = document.querySelector(".inputCpf");
+      const validaCpf = new ValidaCPF(inputCpf.value);
+      if (validaCpf.valida()) {
+        inputCpf.style.border = "1px solid #000";
+        return true;
+      } else {
+        this.errorFormAlert(inputCpf);
+        inputCpf.value = "";
+        return false;
+      }
+    },
+
     validate() {
       const inputCheckIn = q(".inputCheckIn");
       const inputCheckOut = q(".inputCheckOut");
       const inputName = q(".inputName");
-      const inputEmail = q(".inputEmail");
-      const inputTel = q(".inputTel");
+      const inputDateN = q(".inputDateN");
       const selectOne = q(".selectOne");
       const selectTwo = q(".selectTwo");
       const selectThree = q(".selectThree");
       const selectFor = q(".selectFor");
       const totalPeople = q(".totalPeople");
-      const valueTel = Number(inputTel.value);
 
       if (!this.validateEmptyFieldModal(inputName)) return false;
-      if (!this.validateEmptyFieldModal(inputEmail)) return false;
-      if (!this.validateEmptyFieldModal(inputTel)) return false;
+      if (!this.validateCPF()) return false;
+      if (!this.validateEmptyFieldModal(inputDateN)) return false;
       if (!this.validateEmptyFieldModal(inputCheckIn)) return false;
       if (!this.validateEmptyFieldModal(inputCheckOut)) return false;
       if (!this.validateEmptyFieldModal(selectOne)) return false;
@@ -147,7 +202,7 @@ export default {
       if (!this.validateEmptyFieldModal(selectThree)) return false;
       if (!this.validateEmptyFieldModal(selectFor)) return false;
       if (!this.validateEmptyFieldModal(totalPeople)) return false;
-      if (totalPeople.value > 5) {
+      if (totalPeople.value > 5 || totalPeople.value < 0) {
         alert("Só é possivel 5 pessoas por reserva.");
         totalPeople.value = "";
         return false;
@@ -161,19 +216,19 @@ export default {
         const inputCheckIn = q(".inputCheckIn");
         const inputCheckOut = q(".inputCheckOut");
         const inputName = q(".inputName");
-        const inputEmail = q(".inputEmail");
-        const inputTel = q(".inputTel");
+        const inputCpf = q(".inputCpf");
+        const inputDateN = q(".inputDateN");
         const selectOne = q(".selectOne");
         const selectTwo = q(".selectTwo");
         const selectThree = q(".selectThree");
         const selectFor = q(".selectFor");
         const totalPeople = q(".totalPeople");
-        const textAreaInfos = q('.inputForm');
+        const textAreaInfos = q(".inputForm");
 
         const data = {
           nome: inputName.value,
-          email: inputEmail.value,
-          telefone: inputTel.value,
+          cpf: inputCpf.value,
+          dataNascimento: this.formatDateValue(inputDateN.value),
           dataCheckIn: this.formatDateValue(inputCheckIn.value),
           dataCheckOut: this.formatDateValue(inputCheckOut.value),
           qtdCasal: selectThree.value,
@@ -181,7 +236,7 @@ export default {
           qtdPreAdolecente: selectTwo.value,
           qtdAdolecente: selectFor.value,
           totalPeople: totalPeople.value,
-          infos: textAreaInfos.value
+          infos: textAreaInfos.value,
         };
         localStorage.setItem("dataUser", JSON.stringify(data));
 
