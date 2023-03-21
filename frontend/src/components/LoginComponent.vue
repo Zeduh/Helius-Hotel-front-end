@@ -33,6 +33,8 @@ export default {
   },
   methods: {
     close() {
+      this.email = ""
+      this.password = ""
       this.showModal = false;
     },
     tryLogin() {
@@ -48,6 +50,8 @@ export default {
         checkUser.password === this.password ?
         (this.$store.dispatch("login", checkUser),
         this.showModal = false,
+        this.email = "",
+        this.password = "",
         alert("Login realizado com sucesso!"))
         : alert("Senha incorreta")
       } else {
