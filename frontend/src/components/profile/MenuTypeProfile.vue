@@ -16,7 +16,7 @@
               Minhas Reservas
             </button>
           </li>
-          <li><button @click="logout()">Sair</button></li>
+          <li><button @click="logout()" class="logout">Sair</button></li>
         </ul>
       </nav>
 
@@ -136,7 +136,7 @@ export default {
   flex-direction: column;
   width: 100%;
   max-width: 700px;
-  min-width: 500px;
+  min-width: 300px;
   height: 100%;
   border-radius: 5px;
   padding: 20px;
@@ -186,6 +186,32 @@ nav {
         &:hover {
           background-color: #153131;
           color: #fff;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:626px) {
+  .container-column{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+.logout{
+  display: none;
+}
+  
+  nav {
+    margin: 0;
+    padding: 0;
+    & ul {
+      display: flex;
+      & li {
+        & button {
+          text-align: center;
+          width: 130px;
         }
       }
     }
