@@ -19,7 +19,7 @@
             <li @click="$router.push('/acomodacoes')">
               <a>Acomodações</a>
             </li>
-            <li @click="$router.push('/reservas')">
+            <li v-if="$store.state.login" @click="$router.push('/reservas')">
               <a>Reservas</a>
             </li>
             <li @click="$router.push('/contato')">
@@ -54,7 +54,7 @@
         <li>
           <a>O Hotel</a>
         </li>
-        <li @click="$router.push({path: 'acomodacoes'})">
+        <li @click="$router.push({ path: 'acomodacoes' })">
           <a>Acomodações</a>
         </li>
         <li v-if="$store.state.login" @click="$router.push('/reservas')">
@@ -63,7 +63,10 @@
         <li @click="$router.push('/contato')">
           <a>Contato</a>
         </li>
-         <!-- <li>
+        <li v-if="$store.state.login" @click="$router.push(`/perfil/${this.$store.state.loggedUser.email}`)">
+          <a>Minha conta</a>
+        </li>
+        <!-- <li>
               <a>Login</a>
               <button @click="showLoginModal">Login</button>
           </li> -->
@@ -155,7 +158,7 @@ header {
     display: flex;
 
     &__btn {
-      margin: 0 .6rem;
+      margin: 0 0.6rem;
     }
 
     a {
@@ -283,7 +286,7 @@ header {
       }
 
       @media screen and (max-width: 768px) {
-        margin: 0 .4rem;
+        margin: 0 0.4rem;
       }
     }
   }
@@ -292,14 +295,14 @@ header {
 
 
 <script>
-import LoginComponent from '@/components/LoginComponent.vue'
+import LoginComponent from "@/components/LoginComponent.vue";
 import SignUpComponent from "./signUp/SignUpComponent.vue";
 
 export default {
   name: "HeaderComponent",
-  components:{
+  components: {
     LoginComponent,
-    SignUpComponent
-},
+    SignUpComponent,
+  },
 };
 </script>
