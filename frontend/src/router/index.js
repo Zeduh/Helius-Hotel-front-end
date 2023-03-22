@@ -39,8 +39,8 @@ const routes = [
   },
   {
     path: "/sobre",
-    name: "Sobre",
-    component: () => import("../views/SobreView.vue"),
+    name: "sobre",
+    component: () => import("../views/AboutView.vue"),
   },
   {
     path: "/perfil/:email",
