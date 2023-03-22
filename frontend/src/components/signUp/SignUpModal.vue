@@ -42,7 +42,7 @@ function sendUser() {
 
     if (name.value && email.value && password.value) {
         emailsList.includes(email.value) ? alert("E-mail já cadastrado")
-        : (store.dispatch("addUser", { name: name.value, email: email.value, password: password.value, userLevel: 1 }),
+        : (store.dispatch("addUser", { name: name.value, email: email.value, password: password.value, userLevel: 0 }),
         alert("Cadastro realizado!"), closeModal())
     } else {
         alert("Preencha os dados corretamente!")
