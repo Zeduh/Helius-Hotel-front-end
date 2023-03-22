@@ -36,8 +36,9 @@
         </div>
       </div>
       <div class="userArea">
-        <LoginComponent class="userArea__btn" />
-        <SignUpComponent class="userArea__btn" />
+        <LoginComponent v-if="!loginState" class="userArea__item" />
+        <SignUpComponent v-if="!loginState" class="userArea__item" />
+        <span v-if="loginState" class="userArea_item">Olá {{ loggedUser.name }}!</span>
       </div>
     </div>
     <div class="trademarkArea">
@@ -153,8 +154,9 @@ header {
 
   .userArea {
     display: flex;
+    color: v.$mainColorWhite;
 
-    &__btn {
+    &__item {
       margin: 0 .6rem;
     }
 
@@ -297,9 +299,17 @@ import SignUpComponent from "./signUp/SignUpComponent.vue";
 
 export default {
   name: "HeaderComponent",
-  components:{
+  components: {
     LoginComponent,
     SignUpComponent
-},
+  },
+  computed: {
+    loginState() {
+      return this.$store.getters.getLoginState
+    },
+    loggedUser() {
+      return this.$store.getters.getLoggedUser
+    }
+  }
 };
 </script>

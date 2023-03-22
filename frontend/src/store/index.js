@@ -23,6 +23,9 @@ export default createStore({
       }) : null
 
       return emailsList
+    },
+    getLoggedUser(state) {
+      return state.loggedUser
     }
   },
   mutations: {
