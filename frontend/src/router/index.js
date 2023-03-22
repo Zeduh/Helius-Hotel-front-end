@@ -38,6 +38,18 @@ const routes = [
     component: () => import("../views/ContactView.vue"),
   },
   {
+    path: "/admin",
+    name: "administrativo",
+    component: () => import("../views/AdminView.vue"),
+    children: [
+      {
+        path: "/admin/view-users",
+        name: "adminViewUsers",
+        component: () => import("../components/admin/UsersList.vue"),
+      },
+    ],
+  },
+  {
     path: "/sobre",
     name: "sobre",
     component: () => import("../views/AboutView.vue"),

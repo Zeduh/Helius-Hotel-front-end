@@ -26,6 +26,9 @@ export default createStore({
     },
     getLoggedUser(state) {
       return state.loggedUser
+    },
+    getUserLevel(state) {
+      return state.loggedUser.userLevel
     }
   },
   mutations: {
