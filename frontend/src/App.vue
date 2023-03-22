@@ -134,8 +134,11 @@ import HeaderComponent from "./components/HeaderComponent.vue";
 export default {
     name: "AppComponent",
     components: {
-    HeaderComponent,
-    FooterComponent
-}
+        HeaderComponent,
+        FooterComponent
+    },
+    beforeMount() {
+        this.$store.dispatch("initializeStore")
+    }
 }
 </script>

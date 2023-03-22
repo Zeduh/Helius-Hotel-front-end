@@ -40,9 +40,13 @@ function closeModal() {
 function sendUser() {
     const emailsList = [...store.getters.getUsersEmails]
 
-    emailsList.includes(email.value) ? alert("E-mail já cadastrado")
-    : (store.dispatch("addUser", { name: name.value, email: email.value, password: password.value, userLevel: 1}),
-    alert("Cadastro realizado!"), closeModal())
+    if (name.value && email.value && password.value) {
+        emailsList.includes(email.value) ? alert("E-mail já cadastrado")
+        : (store.dispatch("addUser", { name: name.value, email: email.value, password: password.value, userLevel: 1 }),
+        alert("Cadastro realizado!"), closeModal())
+    } else {
+        alert("Preencha os dados corretamente!")
+    }
 }
 
 onBeforeMount(() => {
