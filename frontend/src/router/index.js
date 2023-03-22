@@ -37,6 +37,11 @@ const routes = [
     name: "Contato",
     component: () => import("../views/ContactView.vue"),
   },
+  {
+    path: "/sobre",
+    name: "Sobre",
+    component: () => import("../views/SobreView.vue"),
+  },
 ];
 
 const router = createRouter({
