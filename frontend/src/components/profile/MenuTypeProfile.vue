@@ -3,9 +3,20 @@
     <div class="container-column">
       <nav>
         <ul>
-          <li><button class="selected">Dados Cadastrais</button></li>
-          <li><button>Minhas Reservas</button></li>
-          <li><button>Sair</button></li>
+          <li>
+            <button @click="pageData()" :class="{ selected: selectedData }">
+              Dados Cadastrais
+            </button>
+          </li>
+          <li>
+            <button
+              @click="pageReservation()"
+              :class="{ selected: showMyReservation }"
+            >
+              Minhas Reservas
+            </button>
+          </li>
+          <li><button @click="logout()">Sair</button></li>
         </ul>
       </nav>
 
@@ -17,8 +28,28 @@
           </p>
           <div class="hr" />
         </div>
-        <ContentDataUserVue v-if="showDataUser" />
-        <ContentDataUserVueEdit v-if="showDataUserEdit" />
+        <ContentDataUserVue
+          v-if="showDataUser"
+          :emailUser="emailUser"
+          :nameUser="nameUser"
+          @changeEdit="
+            () => {
+              showDataUser = false;
+              showDataUserEdit = true;
+            }
+          "
+        />
+        <ContentDataUserVueEdit
+          v-if="showDataUserEdit"
+          :emailUser="emailUser"
+          :nameUser="nameUser"
+          @backPage="
+            () => {
+              showDataUserEdit = false;
+              showDataUser = true;
+            }
+          "
+        />
         <ContentMyReservationVue v-if="showMyReservation" />
       </div>
     </div>
@@ -26,22 +57,56 @@
 </template>
 
 <script>
-import ContentDataUserVue from './ContentDataUser.vue';;
-import ContentDataUserVueEdit from './ContentDataUserEdit.vue';
-import ContentMyReservationVue from './ContentMyReservation.vue';
+import ContentDataUserVue from "./ContentDataUser.vue";
+import ContentDataUserVueEdit from "./ContentDataUserEdit.vue";
+import ContentMyReservationVue from "./ContentMyReservation.vue";
 
 export default {
   name: "MenuProfile",
-  components: {ContentDataUserVue,ContentDataUserVueEdit,ContentMyReservationVue},
+  components: {
+    ContentDataUserVue,
+    ContentDataUserVueEdit,
+    ContentMyReservationVue,
+  },
+  props: {
+    nameUser: {
+      type: String,
+    },
+    emailUser: {
+      type: String,
+    },
+    descContent: {
+      type: String,
+    },
+  },
   data() {
     return {
-      nameUser: "",
-      descContent: "",
       showIntro: true,
       showDataUser: true,
       showDataUserEdit: false,
-      showMyReservation: false
+      showMyReservation: false,
+      selectedData: true,
     };
+  },
+  methods: {
+    pageData() {
+      this.selectedData = true;
+      this.showDataUser = true;
+      this.showDataUserEdit = false;
+      this.showMyReservation = false;
+      this.$router.push(`/perfil/${this.emailUser}`);
+    },
+    pageReservation() {
+      this.selectedData = false;
+      this.showDataUser = false;
+      this.showDataUserEdit = false;
+      this.showMyReservation = true;
+      this.$router.push(`/perfil/${this.emailUser}/minhas-reservas`);
+    },
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.push('/');
+    }
   },
 };
 </script>
@@ -72,7 +137,7 @@ export default {
   width: 100%;
   max-width: 700px;
   min-width: 500px;
-  height: 300px;
+  height: 100%;
   border-radius: 5px;
   padding: 20px;
   background-color: #fff;
@@ -102,8 +167,6 @@ export default {
 }
 
 nav {
-  margin-left: -40px;
-  margin-top: -75px;
   padding: 20px;
   & ul {
     & li {
