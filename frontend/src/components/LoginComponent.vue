@@ -102,8 +102,10 @@ export default {
   width: 30px;
   height: 30px;
   border: none;
-  background-color: transparent;
-  color: v.$mainColorWhite;
+  background-color: v.$mainColorYellow;
+  color: v.$mainColorBlack;
+  padding: 10px;
+  border-radius: 3px;
   cursor: pointer;
 }
 
