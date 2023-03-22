@@ -13,13 +13,13 @@
             <li class="selected" @click="$router.push('/')">
               <a>Home</a>
             </li>
-            <li>
+            <li @click="$router.push({path: 'sobre'})">
               <a>O Hotel</a>
             </li>
-            <li @click="$router.push('/acomodacoes')">
+            <li @click="$router.push({path: 'acomodacoes'})">
               <a>Acomodações</a>
             </li>
-            <li @click="$router.push('/reservas')">
+            <li v-if="$store.state.login" @click="$router.push('/reservas')">
               <a>Reservas</a>
             </li>
             <li @click="$router.push('/contato')">
@@ -38,7 +38,7 @@
       <div class="userArea">
         <LoginComponent v-if="!loginState" class="userArea__item" />
         <SignUpComponent v-if="!loginState" class="userArea__item" />
-        <span v-if="loginState" class="userArea_item">Olá {{ loggedUser.name }}!</span>
+        <span v-if="loginState" style="cursor: pointer" class="userArea_item" @click="$router.push(`/perfil/${this.$store.state.loggedUser.email}`)">Olá {{ loggedUser.name }}!</span>
         <a href="" v-if="loginState" @click="logout" class="userArea_item icon">
           <font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" />
         </a>
@@ -55,19 +55,22 @@
         <li class="selected" @click="$router.push('/')">
           <a>Home</a>
         </li>
-        <li>
+        <li @click="$router.push({path: 'sobre'})">
           <a>O Hotel</a>
         </li>
-        <li @click="$router.push({path: 'acomodacoes'})">
+        <li @click="$router.push({name: 'acomodacoes'})">
           <a>Acomodações</a>
         </li>
-        <li v-if="$store.state.login" @click="$router.push('/reservas')">
+        <li v-if="$store.state.login" @click="$router.push({name: 'reservas'})">
           <p>Reservas</p>
         </li>
         <li @click="$router.push('/contato')">
           <a>Contato</a>
         </li>
-         <!-- <li>
+        <li v-if="$store.state.login" @click="$router.push(`/perfil/${this.$store.state.loggedUser.email}`)">
+          <a>Minha conta</a>
+        </li>
+        <!-- <li>
               <a>Login</a>
               <button @click="showLoginModal">Login</button>
           </li> -->
@@ -296,7 +299,7 @@ header {
       }
 
       @media screen and (max-width: 768px) {
-        margin: 0 .4rem;
+        margin: 0 0.4rem;
       }
     }
   }
@@ -305,7 +308,7 @@ header {
 
 
 <script>
-import LoginComponent from '@/components/LoginComponent.vue'
+import LoginComponent from "@/components/LoginComponent.vue";
 import SignUpComponent from "./signUp/SignUpComponent.vue";
 
 export default {

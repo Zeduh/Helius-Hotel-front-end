@@ -212,7 +212,7 @@ export default {
     },
 
     submitForm() {
-      if (this.validate()) {
+      if (this.validate() && this.$store.state.login == true) {
         const inputCheckIn = q(".inputCheckIn");
         const inputCheckOut = q(".inputCheckOut");
         const inputName = q(".inputName");

@@ -1,7 +1,7 @@
 <template>
   <label :for="classInput">
     <p>{{ labelTitle }}</p>
-    <input :class="classInput" :type="type" :placeholder="placeHolder" />
+    <input :class="classInput" :type="type" :placeholder="placeHolder" :value="valueForm" />
   </label>
 </template>
 
@@ -22,6 +22,9 @@ export default {
     placeHolder: {
       type: String,
     },
+    valueForm: {
+      type: String
+    }
   },
 };
 </script>

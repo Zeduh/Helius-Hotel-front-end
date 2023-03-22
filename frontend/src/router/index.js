@@ -37,6 +37,35 @@ const routes = [
     name: "Contato",
     component: () => import("../views/ContactView.vue"),
   },
+  {
+    path: "/admin",
+    name: "administrativo",
+    component: () => import("../views/AdminView.vue"),
+    children: [
+      {
+        path: "/admin/view-users",
+        name: "adminViewUsers",
+        component: () => import("../components/admin/UsersList.vue"),
+      },
+    ],
+  },
+  {
+    path: "/sobre",
+    name: "sobre",
+    component: () => import("../views/AboutView.vue"),
+  },
+  {
+    path: "/perfil/:email",
+    name: "perfil",
+    component: () => import("../views/MyProfileView.vue"),
+    children: [
+      {
+        path: "/perfil/:email/minhas-reservas",
+        name: "minhas-reservas",
+        component: () => import("../components/profile/ContentMyReservation.vue"),
+      },
+    ]
+  },
 ];
 
 const router = createRouter({
