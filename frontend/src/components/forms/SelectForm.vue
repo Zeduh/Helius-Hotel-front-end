@@ -3,7 +3,7 @@
     <p>{{ labelTitle }}</p>
     <select :class="classInput">
       <option value="0" class="firstOption" selected>
-        Selecione a quantidade
+        {{placeHolder}}
       </option>
       <option v-for="list in optionsList" :key="list" :value="list">{{list}}</option>
     </select>
@@ -24,6 +24,9 @@ export default {
     optionsList: {
       type: [Array, Object],
     },
+    placeHolder: {
+      type: String
+    }
   },
 };
 </script>
