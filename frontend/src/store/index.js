@@ -46,6 +46,12 @@ export default createStore({
       state.loggedUser = user
       sessionStorage.setItem("loginState", JSON.stringify(state.login))
       sessionStorage.setItem("loggedUser", JSON.stringify(state.loggedUser))
+    },
+    logout(state) {
+      state.login = false
+      state.loggedUser = null
+      sessionStorage.removeItem("loginState")
+      sessionStorage.removeItem("loggedItem")
     }
   },
   actions: {
@@ -60,6 +66,9 @@ export default createStore({
     },
     login(context, payload) {
       context.commit("login", payload)
+    },
+    logout(context) {
+      context.commit("logout")
     }
   },
   modules: {
