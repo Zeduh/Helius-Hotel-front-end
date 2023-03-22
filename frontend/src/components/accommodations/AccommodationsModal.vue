@@ -43,7 +43,7 @@ export default {
   methods: {
     reservationSkipPage() {
       if (this.$store.state.login == true) {
-        $emit("reservationPage");
+        this.$emit("reservationPage");
       } else {
         window.scroll(0, 0);
         setTimeout(() => {
