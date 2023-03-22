@@ -1,4 +1,3 @@
-import { faTruckField } from '@fortawesome/free-solid-svg-icons'
 import { createStore } from 'vuex'
 
 export default createStore({
@@ -29,6 +28,8 @@ export default createStore({
   mutations: {
     initializeStore(state) {
       localStorage.getItem("usersList") ? state.users = JSON.parse(localStorage.getItem("usersList")) : null
+      sessionStorage.getItem("loginState") ? state.login = JSON.parse(sessionStorage.getItem("loginState")) : null
+      sessionStorage.getItem("loggedUser") ? state.loggedUser = JSON.parse(sessionStorage.getItem("loggedUser")) : null
     },
     reservationFormChange(state, payLoad) {
       state.reservationsSent = payLoad;
@@ -40,6 +41,8 @@ export default createStore({
     login(state, user) {
       state.login = true
       state.loggedUser = user
+      sessionStorage.setItem("loginState", JSON.stringify(state.login))
+      sessionStorage.setItem("loggedUser", JSON.stringify(state.loggedUser))
     }
   },
   actions: {
