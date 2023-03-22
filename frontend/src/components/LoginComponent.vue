@@ -3,6 +3,9 @@
   <a href="#" @click="showModal = true">Fazer Login</a>
           <div v-if="showModal" class="modal">
             <div class="modal-content">
+              <button type="button" @click="showModal = false" class="modal-button">
+                <font-awesome-icon icon="fa-solid fa-x" />
+              </button>
               <h2>Login</h2>
               <form>
                 <label for="email">Email:</label>
@@ -14,8 +17,6 @@
                 <button @click.prevent="tryLogin" type="submit">Entrar</button>
               </form>
               <p><a href="#">Esqueci minha senha</a></p>
-              <p>Não tem conta? <a href="#">Cadastre-se</a></p>
-              <button type="button" @click="showModal = false" >Fechar</button>
             </div>
           </div>
 </div>
@@ -89,7 +90,23 @@ export default {
   background-color: v.$mainColorBlack;
   padding: 20px;
   width: 400px;
+  height: 250px;
   border-radius: 5px;
+  position: relative;
+}
+
+.modal-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: v.$mainColorYellow;
+  color: v.$mainColorBlack;
+  padding: 10px;
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 p{
@@ -140,6 +157,7 @@ button[type="button"] {
 
 a {
   color: v.$mainColorWhite;
+  padding: 0;
 }
 
 </style>

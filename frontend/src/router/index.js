@@ -42,6 +42,18 @@ const routes = [
     name: "Sobre",
     component: () => import("../views/SobreView.vue"),
   },
+  {
+    path: "/perfil/:email",
+    name: "perfil",
+    component: () => import("../views/MyProfileView.vue"),
+    children: [
+      {
+        path: "/perfil/:email/minhas-reservas",
+        name: "minhas-reservas",
+        component: () => import("../components/profile/ContentMyReservation.vue"),
+      },
+    ]
+  },
 ];
 
 const router = createRouter({
