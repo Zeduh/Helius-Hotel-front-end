@@ -34,12 +34,16 @@ export default {
   },
   methods: {
     close() {
+      this.email = ""
+      this.password = ""
       this.showModal = false;
     },
     tryLogin() {
       // verify if user exists
       const users = this.$store.getters.getUsers
       let checkUser = null
+
+      if (this.loginState) { alert("Você já está logado"); return }
 
       users.forEach(user => {
         user.email === this.email ? checkUser = user : null
@@ -49,6 +53,8 @@ export default {
         checkUser.password === this.password ?
         (this.$store.dispatch("login", checkUser),
         this.showModal = false,
+        this.email = "",
+        this.password = "",
         alert("Login realizado com sucesso!"))
         : alert("Senha incorreta")
       } else {
@@ -56,6 +62,11 @@ export default {
       }
     }
   },
+  computed: {
+    loginState() {
+      return this.$store.getters.getLoginState
+    }
+  }
 }
 </script>
 

@@ -36,8 +36,12 @@
         </div>
       </div>
       <div class="userArea">
-        <LoginComponent class="userArea__btn" />
-        <SignUpComponent class="userArea__btn" />
+        <LoginComponent v-if="!loginState" class="userArea__item" />
+        <SignUpComponent v-if="!loginState" class="userArea__item" />
+        <span v-if="loginState" class="userArea_item">Olá {{ loggedUser.name }}!</span>
+        <a href="" v-if="loginState" @click="logout" class="userArea_item icon">
+          <font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" />
+        </a>
       </div>
     </div>
     <div class="trademarkArea">
@@ -153,9 +157,18 @@ header {
 
   .userArea {
     display: flex;
+    align-items: center;
+    color: v.$mainColorWhite;
+    height: 1.8rem;
 
-    &__btn {
+    &__item {
       margin: 0 .6rem;
+    }
+
+    .icon {
+      font-size: 1.3rem;
+      color: v.$mainColorYellow;
+      margin-left: 1.2rem;
     }
 
     a {
@@ -297,9 +310,22 @@ import SignUpComponent from "./signUp/SignUpComponent.vue";
 
 export default {
   name: "HeaderComponent",
-  components:{
+  components: {
     LoginComponent,
     SignUpComponent
-},
+  },
+  computed: {
+    loginState() {
+      return this.$store.getters.getLoginState
+    },
+    loggedUser() {
+      return this.$store.getters.getLoggedUser
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout")
+    }
+  }
 };
 </script>
