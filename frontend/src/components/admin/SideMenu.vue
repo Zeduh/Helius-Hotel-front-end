@@ -12,17 +12,6 @@
     </div>
 </template>
 
-<script setup>
-import { useStore } from "vuex";
-import { computed } from "vue";
-
-const store = useStore()
-
-const userLevel = computed(() => store.getters.getUserLevel)
-
-
-</script>
-
 <style scoped lang="scss">
 @use "@/assets/scss/variables" as v;
     .side-menu__wrapper {

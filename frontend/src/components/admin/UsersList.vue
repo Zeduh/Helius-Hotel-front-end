@@ -1,14 +1,14 @@
 <template>
     <div class="users-list__wrapper">
-        <table>
-            <thead>
+        <table class="users-list__wrapper__table">
+            <thead class="users-list__wrapper__table__table-head">
                 <tr>
                     <td>Nome</td>
                     <td>E-mail</td>
                     <td>Nível de Usuário</td>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="users-list__wrapper__table__table-body">
                 <tr v-for="user in users" :key="user.email">
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
@@ -29,12 +29,31 @@ const users = computed(() => store.getters.getUsers)
 </script>
 
 <style scoped lang="scss">
+@use "@/assets/scss/variables" as v;
 .users-list__wrapper {
-    table {
+    &__table {
         border-collapse: collapse;
-        
-        td {
-            border: 2px solid #000;
+
+        &__table-head {
+            td {
+                background-color: v.$mainColorBlack;
+                color: v.$mainColorWhite;
+                text-align: center;
+                padding: .6rem .8rem;
+            }
+        }
+
+        &__table-body {
+            tr {
+                &:hover {
+                    background-color: v.$mainColorYellow;
+                    color: v.$mainColorWhite;
+                }
+            }
+
+            td{
+                padding: .4rem .8rem;
+            }
         }
     }
 }
