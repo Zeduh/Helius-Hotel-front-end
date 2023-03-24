@@ -321,9 +321,6 @@ export default {
     loggedUser() {
       return this.$store.getters.getLoggedUser
     },
-    images() {
-      return this.$store.state.images;
-    },
   },
   methods: {
     logout() {

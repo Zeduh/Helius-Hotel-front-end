@@ -2,14 +2,32 @@
   <div class="container">
     <div class="container-column">
       <div class="column-left">
-        <InputFormVue classInput="nameUser" labelTitle="Nome:" type="text" :valueForm="nameUser"/>
+        <InputForm
+          classInput="nameUser"
+          labelTitle="Nome:"
+          type="text"
+          :valueForm="nameUser"
+        />
       </div>
       <div class="column-mid">
-        <InputFormVue classInput="emailUser" labelTitle="Email:" type="email" :valueForm="emailUser"/>
+        <InputForm
+          classInput="emailUser"
+          labelTitle="Email:"
+          type="email"
+          :valueForm="emailUser"
+        />
       </div>
       <div class="column-right">
-        <InputFormVue classInput="passBefore" labelTitle="Senha Atual:" type="password"/>
-        <InputFormVue classInput="passAfter" labelTitle="Nova Senha:" type="password"/>
+        <InputForm
+          classInput="passBefore"
+          labelTitle="Senha Atual:"
+          type="password"
+        />
+        <InputForm
+          classInput="passAfter"
+          labelTitle="Nova Senha:"
+          type="password"
+        />
       </div>
     </div>
     <div class="container-button">
@@ -20,11 +38,11 @@
 </template>
 
 <script>
-import InputFormVue from "../forms/InputForm.vue";
+import InputForm from "../forms/InputForm.vue";
 
 export default {
   name: "ContentDataUserEdit",
-  components: { InputFormVue },
+  components: { InputForm },
   props: {
     nameUser: {
       type: String,
@@ -36,13 +54,41 @@ export default {
   emits: ["backPage"],
   methods: {
     changeData() {
-      const nomeInput = document.querySelector('.nameUser');
-      const emailInput = document.querySelector('.emailUser');
-      const passBeforeInput = document.querySelector('.passBefore');
-      const passAfterInput = document.querySelector('.passAfter');
+      const nomeInput = document.querySelector(".nameUser");
+      const emailInput = document.querySelector(".emailUser");
+      const passBeforeInput = document.querySelector(".passBefore");
+      const passAfterInput = document.querySelector(".passAfter");
+      const localStorageDataUser = JSON.parse(
+        localStorage.getItem("usersList")
+      );
+      this.$store.dispatch("changeNameUser",nomeInput.value);
+      this.$store.dispatch("changeEmailUser",emailInput.value);
+      alert('Nome de usuario e Email alterados com sucesso.');
 
-      console.log(nomeInput.value)
-    }
+      if (passBeforeInput.value && passAfterInput.value) {
+        if (this.$store.state.loggedUser && this.$store.state.login == true) {
+          this.$store.state.users.forEach((v) => {
+            if (v.email == this.$store.state.loggedUser.email) {
+              if (v.password == passBeforeInput.value) {
+                this.$store.dispatch("changePassword", passAfterInput.value);
+                this.$store.dispatch("initializeStore");
+                alert('Senha alterada com sucesso.');
+              } else {
+                alert("Senha atual incorreta.");
+                return;
+              }
+            }
+          });
+        }
+      } else if (passBeforeInput.value && !passAfterInput.value) {
+        alert("Campo nova senha invalido.");
+        return;
+      } else if (!passBeforeInput.value && passAfterInput.value) {
+        alert("Campo de senha atual invalido.");
+        return;
+      }
+      console.log(this.$store.state.users,this.$store.state.loggedUser)
+    },
   },
 };
 </script>
