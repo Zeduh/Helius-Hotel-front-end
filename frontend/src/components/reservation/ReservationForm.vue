@@ -225,7 +225,7 @@ export default {
         const totalPeople = q(".totalPeople");
         const textAreaInfos = q(".inputForm");
 
-        const data = {
+        const dataUser = {
           nome: inputName.value,
           cpf: inputCpf.value,
           dataNascimento: this.formatDateValue(inputDateN.value),
@@ -238,7 +238,7 @@ export default {
           totalPeople: totalPeople.value,
           infos: textAreaInfos.value,
         };
-        localStorage.setItem("dataUser", JSON.stringify(data));
+        localStorage.setItem(`reservaUserData:${this.$store.state.loggedUser.email}`, JSON.stringify(dataUser));
 
         this.$emit("change");
         this.$store.dispatch("reservationFormChange", true);
