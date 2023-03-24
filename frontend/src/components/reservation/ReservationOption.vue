@@ -36,6 +36,9 @@
                 Revisar
               </button>
             </p>
+            <p class="qtServices">
+              Total de pessoas <span>{{ totalPeopleNumber.totalPeople }}</span>
+            </p>
             <hr />
             <p class="value">
               Valor serviços adicionais
@@ -136,6 +139,11 @@ export default {
   },
   data() {
     return {
+      totalPeopleNumber: JSON.parse(
+        localStorage.getItem(
+          `reservaUserData:${this.$store.state.loggedUser.email}`
+        )
+      ),
       showServices: false,
       fadeShow: false,
       modalBuy: false,
@@ -265,11 +273,11 @@ export default {
     },
     displayInfos() {
       const priceServices =
-        localStorage.getItem("valueServices") == "null"
+        JSON.parse(localStorage.getItem("valueServices")) == null
           ? 0
           : localStorage.getItem("valueServices");
       const qtdServices =
-        localStorage.getItem("qtdServices") == "null"
+        JSON.parse(localStorage.getItem("qtdServices")) == null
           ? "0"
           : localStorage.getItem("qtdServices");
 
@@ -323,12 +331,21 @@ export default {
           }
         });
       }, 2);
+      const totalPeople = localStorage.getItem(
+        `reservaUserData:${this.$store.state.loggedUser.email}`
+      );
       setTimeout(() => {
         this.valueAcomodTotal = String(
-          (priceS + priceP + priceB).toFixed(2)
+          (
+            (priceS + priceP + priceB) *
+            this.totalPeopleNumber.totalPeople
+          ).toFixed(2)
         ).replace(".", ",");
         this.valueTotal = String(
-          (priceS + priceP + priceB + +priceServices).toFixed(2)
+          (
+            (priceS + priceP + priceB) * this.totalPeopleNumber.totalPeople +
+            +priceServices
+          ).toFixed(2)
         ).replace(".", ",");
       }, 5);
     },
@@ -417,9 +434,40 @@ export default {
       this.displayInfos();
       this.openModalBuy();
     },
+    saveDataReservation() {
+      const roomChoice = document.querySelectorAll(
+        ".countContainer p:nth-child(1)"
+      );
+      const roomChoiceQtd = document.querySelectorAll(".countRoomList");
+      const reservation = JSON.parse(
+        localStorage.getItem(
+          `reservaUserData:${this.$store.state.loggedUser.email}`
+        )
+      );
+      const userPaymentdata = {
+        roomChoice: [],
+        servicesAdd: JSON.parse(localStorage.getItem("objectServices")),
+        servicesValue: localStorage.getItem("valueServices"),
+        acomodValue: this.valueAcomodTotal,
+        valueTotal: this.valueTotal,
+      };
+      roomChoice.forEach((v) => {
+        userPaymentdata.roomChoice.push(
+          `${v.innerHTML} ${v.nextSibling.innerHTML}`
+        );
+      });
+
+      localStorage.setItem(
+        `reservaPaymentData:${this.$store.state.loggedUser.email}`,
+        JSON.stringify(userPaymentdata)
+      );
+    },
     nextPage() {
+      this.saveDataReservation();
+      this.$store.state.reservationsSent = false;
       this.$emit("change");
       this.$router.push("pedido-finalizado");
+      this.reloadScrollBars();
     },
   },
   created() {
@@ -427,7 +475,13 @@ export default {
       this.$router.push("/reservas");
     }
   },
-  mounted() {},
+  mounted() {
+    if (this.$store.state.reservationsSent == false) {
+      this.$router.push("/reservas");
+      return;
+    }
+    this.reloadScrollBars();
+  },
 };
 </script>
 
