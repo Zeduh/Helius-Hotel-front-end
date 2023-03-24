@@ -47,6 +47,11 @@ const routes = [
         name: "adminViewUsers",
         component: () => import("../components/admin/UsersList.vue"),
       },
+      {
+        path: "/admin/view-reservations",
+        name: "adminViewReservations",
+        component: () => import("../components/admin/ReservationsList.vue"),
+      },
     ],
   },
   {

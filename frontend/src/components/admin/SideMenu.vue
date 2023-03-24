@@ -6,7 +6,7 @@
                 <RouterLink to="/admin/view-users">Ver usuários</RouterLink>
             </li>
             <li>
-                <RouterLink to="/admin">Ver reservas</RouterLink>
+                <RouterLink to="/admin/view-reservations">Ver reservas</RouterLink>
             </li>
         </ul>
     </div>
