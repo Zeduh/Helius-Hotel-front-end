@@ -9,7 +9,7 @@
 import SignUpModal from "./SignUpModal.vue";
 import { ref } from "vue"
 
-let showModal = ref(false)
+const showModal = ref(false)
 
 function toggleSignUpModal() {
     showModal.value = !showModal.value

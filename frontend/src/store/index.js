@@ -29,11 +29,15 @@ export default createStore({
     },
     getUserLevel(state) {
       return state.loggedUser.userLevel
+    },
+    getReservations(state) {
+      return state.reservationsSent
     }
   },
   mutations: {
     initializeStore(state) {
       localStorage.getItem("usersList") ? state.users = JSON.parse(localStorage.getItem("usersList")) : null
+      localStorage.getItem("dataUser") ? state.reservationsSent = JSON.parse(localStorage.getItem("dataUser")) : null
       sessionStorage.getItem("loginState") ? state.login = JSON.parse(sessionStorage.getItem("loginState")) : null
       sessionStorage.getItem("loggedUser") ? state.loggedUser = JSON.parse(sessionStorage.getItem("loggedUser")) : null
     },
