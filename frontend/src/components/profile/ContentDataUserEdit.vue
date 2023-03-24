@@ -2,14 +2,14 @@
   <div class="container">
     <div class="container-column">
       <div class="column-left">
-        <InputFormVue labelTitle="Nome:" type="text" :valueForm="nameUser"/>
+        <InputFormVue classInput="nameUser" labelTitle="Nome:" type="text" :valueForm="nameUser"/>
       </div>
       <div class="column-mid">
-        <InputFormVue labelTitle="Email:" type="email" :valueForm="emailUser"/>
+        <InputFormVue classInput="emailUser" labelTitle="Email:" type="email" :valueForm="emailUser"/>
       </div>
       <div class="column-right">
-        <InputFormVue labelTitle="Senha Atual:" type="password"/>
-        <InputFormVue labelTitle="Nova Senha:" type="password"/>
+        <InputFormVue classInput="passBefore" labelTitle="Senha Atual:" type="password"/>
+        <InputFormVue classInput="passAfter" labelTitle="Nova Senha:" type="password"/>
       </div>
     </div>
     <div class="container-button">
@@ -34,10 +34,16 @@ export default {
     },
   },
   emits: ["backPage"],
-  methods: {},
-  mounted() {
-    
-  }
+  methods: {
+    changeData() {
+      const nomeInput = document.querySelector('.nameUser');
+      const emailInput = document.querySelector('.emailUser');
+      const passBeforeInput = document.querySelector('.passBefore');
+      const passAfterInput = document.querySelector('.passAfter');
+
+      console.log(nomeInput.value)
+    }
+  },
 };
 </script>
 

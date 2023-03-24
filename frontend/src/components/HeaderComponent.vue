@@ -13,7 +13,7 @@
             <li class="selected" @click="$router.push('/')">
               <a>Home</a>
             </li>
-            <li>
+            <li @click="$router.push({path: 'sobre'})">
               <a>O Hotel</a>
             </li>
             <li @click="$router.push({path: 'acomodacoes'})">
@@ -55,7 +55,7 @@
         <li class="selected" @click="$router.push('/')">
           <a>Home</a>
         </li>
-        <li>
+        <li @click="$router.push({path: 'sobre'})">
           <a>O Hotel</a>
         </li>
         <li @click="$router.push({name: 'acomodacoes'})">

@@ -2,12 +2,7 @@
   <main>
     <h1>Sobre o Hotel</h1>
     <p>
-      <img
-        src="@/assets/images/areas01.jpg"
-        alt="Nosso Hotel"
-        width="50%"
-        class="imgs"
-      />
+      <img :src="require('../assets/images/areas01.jpg')" alt="Nosso Hotel" width="50%" class="imgs" />
       O Hotel já está em funcionando há quase duas décadas, no inicio de 2015
       houve a troca de comando da direção, onde novas estruturas e readequações
       foram realizadas para melhor atender o hospede que procura um local
@@ -28,32 +23,17 @@
       <h1>Nossos Serviços</h1>
       <ul>
         <li>
-          <img
-            width="100%"
-            src="@/assets/images/comida.jpg"
-            alt="Cozinha especializada"
-            class="loc"
-          />
+          <img width="100%" :src="require('../assets/images/comida.jpg')" alt="Cozinha especializada" class="loc" />
           <h3>Cozinha especializada</h3>
           <p>24 horas</p>
         </li>
         <li>
-          <img
-            width="100%"
-            src="@/assets/images/academia.jpg"
-            alt="Academia"
-            class="loc"
-          />
+          <img width="100%" :src="require('../assets/images/academia.jpg')" alt="Academia" class="loc" />
           <h3>Academia</h3>
           <p>24 horas</p>
         </li>
         <li>
-          <img
-            width="100%"
-            src="@/assets/images/piscina01.jpg"
-            alt="Piscina"
-            class="loc"
-          />
+          <img width="100%" :src="require('../assets/images/piscina01.jpg')" alt="Piscina" class="loc" />
           <h3>Piscina de frente ao mar</h3>
           <p>24 horas</p>
         </li>
@@ -78,7 +58,11 @@
   </main>
 </template>
 
-<style scoped>
+<script>
+export default { name: "SobreView" };
+</script>
+
+<style lang="scss" scoped>
 h1 {
   margin: 10px 100px 20px;
   text-align: center;
@@ -128,7 +112,3 @@ p {
   word-spacing: 0.3rem;
 }
 </style>
-
-<script>
-export default { name: "SobreView" };
-</script>
