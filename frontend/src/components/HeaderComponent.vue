@@ -25,13 +25,6 @@
             <li @click="$router.push('/contato')">
               <a>Contato</a>
             </li>
-            <!-- <li>
-              <a>Login</a>
-              <button @click="showLoginModal">Login</button>
-            </li> -->
-            <!-- <li>
-              <a id="signUpBtnSS">Cadastre-se</a>
-            </li> -->
           </ul>
         </div>
       </div>
@@ -44,7 +37,7 @@
         </a>
       </div>
     </div>
-    <div class="trademarkArea">
+    <div class="trademarkArea" :style="{ backgroundImage: 'url(' + imageUrl + ')' }">
       <div id="blackBackground">
         <h1 class="logo">Helius Hotel</h1>
         <h2>A sua estadia em primeiro lugar</h2>
@@ -70,13 +63,6 @@
         <li v-if="$store.state.login" @click="$router.push(`/perfil/${this.$store.state.loggedUser.email}`)">
           <a>Minha conta</a>
         </li>
-        <!-- <li>
-              <a>Login</a>
-              <button @click="showLoginModal">Login</button>
-          </li> -->
-        <!-- <li>
-          <a id="signUpBtnLS">Cadastre-se</a>
-        </li> -->
       </ul>
     </nav>
   </header>
@@ -187,10 +173,11 @@ header {
   justify-content: center;
   align-items: flex-end;
 
-  background-image: url("../assets/images/hotel01.jpg");
+  // background-image: url("../assets/images/hotel01.jpg");
   filter: brightness(100%) saturate(50%);
   background-size: cover;
   background-attachment: fixed;
+  background-position: bottom center;
   position: relative;
   width: 100%;
   height: 18rem;
@@ -313,9 +300,19 @@ import SignUpComponent from "./signUp/SignUpComponent.vue";
 
 export default {
   name: "HeaderComponent",
+  data() {
+    return {
+      images: [
+        "hotel01.jpg",
+        "hotel02.jpg",
+        "piscina02.jpg",
+      ],
+      imageUrl: ""
+    }
+  },
   components: {
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
   },
   computed: {
     loginState() {
@@ -323,12 +320,16 @@ export default {
     },
     loggedUser() {
       return this.$store.getters.getLoggedUser
-    }
+    },
   },
   methods: {
     logout() {
       this.$store.dispatch("logout")
     }
+  },
+  mounted() {
+    const randomIndex = Math.floor(Math.random() * this.images.length);
+    this.imageUrl = require(`@/assets/images/${this.images[randomIndex]}`);
   }
 };
 </script>

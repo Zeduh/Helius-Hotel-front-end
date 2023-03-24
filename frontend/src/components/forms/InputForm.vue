@@ -1,7 +1,7 @@
 <template>
   <label :for="classInput">
     <p>{{ labelTitle }}</p>
-    <input :class="classInput" :type="type" :placeholder="placeHolder" :value="valueForm" />
+    <input :class="classInput" :type="type" :placeholder="placeHolder" :value="valueForm" :pattern="patternTxt"/>
   </label>
 </template>
 
@@ -23,6 +23,9 @@ export default {
       type: String,
     },
     valueForm: {
+      type: String
+    },
+    patternTxt: {
       type: String
     }
   },

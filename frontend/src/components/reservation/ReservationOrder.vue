@@ -12,7 +12,7 @@ import CounterPage from "../CounterPage.vue";
 export default {
   name: "ReservasOrder",
   components: {CounterPage,TitleInitialDescription},
-  created() {
+  mounted() {
     if (this.$store.state.reservationsSent == false) {
       this.$router.push("/reservas");
     }

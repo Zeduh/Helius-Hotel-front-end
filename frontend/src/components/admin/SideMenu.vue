@@ -3,32 +3,14 @@
         <h2>Helius Hotel</h2>
         <ul class="side-menu__wrapper__list">
             <li>
-                <RouterLink to="/view-users">Ver usuários</RouterLink>
-            </li>
-            <li v-if="userLevel > 1">
-                <RouterLink to="/">Editar usuários</RouterLink>
+                <RouterLink to="/admin/view-users">Ver usuários</RouterLink>
             </li>
             <li>
-                <RouterLink to="/">Ver reservas</RouterLink>
-            </li>
-            <li v-if="userLevel > 1">
-                <RouterLink to="/">Editar reservas</RouterLink>
+                <RouterLink to="/admin/view-reservations">Ver reservas</RouterLink>
             </li>
         </ul>
     </div>
 </template>
-
-<script setup>
-import { useStore } from "vuex";
-import { computed } from "vue";
-
-const store = useStore()
-
-const loginState = computed(() => store.getters.getLoginState)
-const userLevel = computed(() => store.getters.getUserLevel)
-
-
-</script>
 
 <style scoped lang="scss">
 @use "@/assets/scss/variables" as v;
@@ -41,20 +23,43 @@ const userLevel = computed(() => store.getters.getUserLevel)
         border-radius: .6rem;
         padding: 1rem;
         width: 14rem;
+        margin: 0;
 
         &__list {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
 
             width: 100%;
             padding: 0;
 
             li {
-                list-style: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
-                color: black;
+                list-style: none;
+                margin: .4rem 0;
+                width: 80%;
+                height: 2rem;
+                border-radius: .6rem;
+
+                a{
+                    color: black;
+                }
+
+                &:hover {
+                    background-color: v.$mainColorYellow;
+                }
             }
+        }
+
+        h2 {
+            width: 100%;
+            text-align: center;
+            padding: .4rem 0;
+            margin: .4rem 0;
+            border-bottom: 1px solid v.$mainColorBlack;
         }
     }
 </style>
