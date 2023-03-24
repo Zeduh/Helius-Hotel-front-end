@@ -36,13 +36,13 @@ export default {
       if (this.orderPage) return 3;
     },
   },
-  mounted() {
+  created() {
     if (this.$route.path == "/reservas" && this.$store.state.login == true) {
       this.formPage = true;
       this.orderPage = false;
       this.optionPage = false;
       return;
-    } else {
+    } else if(this.$route.path == "/reservas" && this.$store.state.login == false) {
       this.$router.push("/");
       alert("Você precisa estar logado para fazer uma reserva.");
       return;

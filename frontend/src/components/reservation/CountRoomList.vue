@@ -1,9 +1,9 @@
 <template>
-  <p v-if="show">
-    <span ref="countRoomList">{{count}}x</span>
-    {{roomName}}
+  <div class="countContainer" v-if="show">
+    <p ref="countRoomList" class="countRoomList">{{count}}x</p>
+    <p class="roomNameList">{{roomName}}</p>
     <button @click="() => {show = false; $emit('update')}">Remover</button>
-  </p>
+  </div>
 </template>
 
 <script>
@@ -30,7 +30,10 @@ export default {
 <style lang="scss" scoped>
 div {
     display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
 }
+
 button {
     cursor: pointer;
 }
