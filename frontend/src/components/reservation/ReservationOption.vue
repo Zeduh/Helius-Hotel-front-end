@@ -149,6 +149,7 @@ export default {
       modalBuy: false,
       showCountRoomList: true,
       choiceRooms: "",
+      activeCupom: false,
       roomList: [],
       roomQtd: 0,
       choiceQtdServices: 0,

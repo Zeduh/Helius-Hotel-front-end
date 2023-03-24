@@ -21,7 +21,7 @@ export default {
       objectDataUser: JSON.parse(localStorage.getItem(`reservaUserData:${this.$store.state.loggedUser.email}`)),
       objectPaymentUser: JSON.parse(localStorage.getItem(`reservaPaymentData:${this.$store.state.loggedUser.email}`)),
     };
-  },
+  }
 };
 </script>
 
