@@ -41,9 +41,6 @@ export default {
       this.$router.push("/");
     }
   },
-  mounted() {
-    console.log(this.$store.state.activeReservationUserList)
-  }
 };
 </script>
 
