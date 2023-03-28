@@ -7,8 +7,6 @@
     >
       Não há reservas cadastradas, para fazer sua reserva clique aqui.
     </p>
-    <p>{{objectDataUser}} {{objectPaymentUser}}</p>
-    <div class="modal"></div>
   </div>
 </template>
 
@@ -21,6 +19,15 @@ export default {
       objectDataUser: JSON.parse(localStorage.getItem(`reservaUserData:${this.$store.state.loggedUser.email}`)),
       objectPaymentUser: JSON.parse(localStorage.getItem(`reservaPaymentData:${this.$store.state.loggedUser.email}`)),
     };
+  },
+  computed: {
+    verifyData() {
+      if (this.objectDataUser && this.objectPaymentUser) {
+        return false;
+      } else {
+        true
+      }
+    }
   }
 };
 </script>

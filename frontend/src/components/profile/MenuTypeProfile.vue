@@ -105,7 +105,18 @@ export default {
     },
     logout() {
       this.$store.dispatch("logout");
-      this.$router.push('/');
+      this.$router.push("/");
+    },
+  },
+  created() {
+    if (this.$store.state.login == true && this.$store.state.loggedUser) {
+      if (this.$route.path == `/perfil/${this.emailUser}/minhas-reservas`) {
+        this.selectedData = false;
+        this.showDataUser = false;
+        this.showDataUserEdit = false;
+        this.showMyReservation = true;
+        this.$router.push(`/perfil/${this.emailUser}/minhas-reservas`);
+      }
     }
   },
 };
@@ -192,17 +203,17 @@ nav {
   }
 }
 
-@media (max-width:626px) {
-  .container-column{
+@media (max-width: 626px) {
+  .container-column {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
   }
-.logout{
-  display: none;
-}
-  
+  .logout {
+    display: none;
+  }
+
   nav {
     margin: 0;
     padding: 0;
