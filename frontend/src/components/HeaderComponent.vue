@@ -3,11 +3,11 @@
     <div class="topBar">
       <div id="mobileMenuDiv">
         <button type="button" id="mobileMenuBtnOpen">
-          <i class="fa fa-solid fa-bars fa-2x menuIcon"></i>
+          <font-awesome-icon icon="fa-solid fa-bars" />
         </button>
         <div id="mobileMenu">
           <button id="mobileMenuBtnClose">
-            <i class="fa-solid fa-xmark"></i>
+            <font-awesome-icon icon="fa-solid fa-x" />
           </button>
           <ul>
             <li class="selected" @click="$router.push('/')">
@@ -24,6 +24,12 @@
             </li>
             <li @click="$router.push('/contato')">
               <a>Contato</a>
+            </li>
+            <li v-if="$store.state.login" @click="$router.push(`/perfil/${this.$store.state.loggedUser.email}`)">
+             <a>Minha conta</a>
+            </li>
+            <li v-if="userLevel > 0" @click="$router.push('/contato')">
+              <a>Admin</a>
             </li>
           </ul>
         </div>
@@ -62,6 +68,9 @@
         </li>
         <li v-if="$store.state.login" @click="$router.push(`/perfil/${this.$store.state.loggedUser.email}`)">
           <a>Minha conta</a>
+        </li>
+        <li v-if="userLevel > 0" @click="$router.push('/admin')">
+          <a>Admin</a>
         </li>
       </ul>
     </nav>
@@ -204,10 +213,8 @@ header {
   button {
     background-color: v.$mainColorBlack;
     border: none;
-
-    .menuIcon {
-      color: v.$mainColorWhite;
-    }
+    color: v.$mainColorWhite;
+    font-size: 1.4rem;
   }
 }
 
@@ -324,6 +331,9 @@ export default {
     images() {
       return this.$store.state.images;
     },
+    userLevel() {
+      return this.$store.getters.getUserLevel;
+    }
   },
   methods: {
     logout() {
