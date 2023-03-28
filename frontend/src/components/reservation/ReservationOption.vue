@@ -464,7 +464,7 @@ export default {
     },
     nextPage() {
       this.saveDataReservation();
-      this.$store.state.reservationsSent = false;
+      this.$store.dispatch("reservationFormChange", false);
       this.$emit("change");
       this.$router.push("pedido-finalizado");
       this.reloadScrollBars();

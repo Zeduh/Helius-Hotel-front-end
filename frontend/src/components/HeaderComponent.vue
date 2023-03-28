@@ -328,9 +328,6 @@ export default {
     loggedUser() {
       return this.$store.getters.getLoggedUser
     },
-    images() {
-      return this.$store.state.images;
-    },
     userLevel() {
       return this.$store.getters.getUserLevel;
     }
