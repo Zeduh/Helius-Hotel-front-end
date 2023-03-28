@@ -29,6 +29,7 @@
 
         <a
           href="https://www.google.com.br/maps/dir/Jardim+Casa+Branca+-+Arapongas/Arapongas,+Paran%C3%A1/@-23.4346369,-51.4523286,1184m/data=!3m1!1e3!4m13!4m12!1m5!1m1!1s0x94eca3cc41030985:0x6d7490742db3d7e!2m2!1d-51.4483135!2d-23.4323178!1m5!1m1!1s0x94eca1617f92a5e1:0x597603d103d30bed!2m2!1d-51.4264069!2d-23.4157749"
+          target="_blank"
         >
           clique aqui
         </a>

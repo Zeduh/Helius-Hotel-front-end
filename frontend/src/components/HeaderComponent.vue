@@ -3,27 +3,33 @@
     <div class="topBar">
       <div id="mobileMenuDiv">
         <button type="button" id="mobileMenuBtnOpen">
-          <i class="fa fa-solid fa-bars fa-2x menuIcon"></i>
+          <font-awesome-icon icon="fa-solid fa-bars" />
         </button>
         <div id="mobileMenu">
           <button id="mobileMenuBtnClose">
-            <i class="fa-solid fa-xmark"></i>
+            <font-awesome-icon icon="fa-solid fa-x" />
           </button>
           <ul>
             <li class="selected" @click="$router.push('/')">
               <a>Home</a>
             </li>
-            <li @click="$router.push({path: 'sobre'})">
+            <li @click="$router.push({name: 'sobre'})">
               <a>O Hotel</a>
             </li>
-            <li @click="$router.push({path: 'acomodacoes'})">
+            <li @click="$router.push({name: 'acomodacoes'})">
               <a>Acomodações</a>
             </li>
-            <li v-if="$store.state.login" @click="$router.push('/reservas')">
+            <li v-if="$store.state.login" @click="$router.push({name: 'reservas'})">
               <a>Reservas</a>
             </li>
-            <li @click="$router.push('/contato')">
+            <li @click="$router.push({name: 'contato'})">
               <a>Contato</a>
+            </li>
+            <li v-if="$store.state.login" @click="$router.push(`/perfil/${this.$store.state.loggedUser.email}`)">
+             <a>Minha conta</a>
+            </li>
+            <li v-if="userLevel > 0" @click="$router.push('/contato')">
+              <a>Admin</a>
             </li>
           </ul>
         </div>
@@ -48,7 +54,7 @@
         <li class="selected" @click="$router.push('/')">
           <a>Home</a>
         </li>
-        <li @click="$router.push({path: 'sobre'})">
+        <li @click="$router.push({name: 'sobre'})">
           <a>O Hotel</a>
         </li>
         <li @click="$router.push({name: 'acomodacoes'})">
@@ -57,11 +63,14 @@
         <li v-if="$store.state.login" @click="$router.push({name: 'reservas'})">
           <p>Reservas</p>
         </li>
-        <li @click="$router.push('/contato')">
+        <li @click="$router.push({name: 'contato'})">
           <a>Contato</a>
         </li>
         <li v-if="$store.state.login" @click="$router.push(`/perfil/${this.$store.state.loggedUser.email}`)">
           <a>Minha conta</a>
+        </li>
+        <li v-if="userLevel > 0" @click="$router.push('/admin')">
+          <a>Admin</a>
         </li>
       </ul>
     </nav>
@@ -204,10 +213,8 @@ header {
   button {
     background-color: v.$mainColorBlack;
     border: none;
-
-    .menuIcon {
-      color: v.$mainColorWhite;
-    }
+    color: v.$mainColorWhite;
+    font-size: 1.4rem;
   }
 }
 
@@ -321,9 +328,9 @@ export default {
     loggedUser() {
       return this.$store.getters.getLoggedUser
     },
-    images() {
-      return this.$store.state.images;
-    },
+    userLevel() {
+      return this.$store.getters.getUserLevel;
+    }
   },
   methods: {
     logout() {

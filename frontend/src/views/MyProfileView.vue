@@ -19,7 +19,7 @@ export default {
       nome: this.$store.state.loggedUser.name,
     };
   },
-  mounted() {
+  created() {
     if (this.$store.state.login == true) {
       if (this.$store.state.loggedUser == null) {
         alert("Você precisa estar logado para acessar o seu perfil.");

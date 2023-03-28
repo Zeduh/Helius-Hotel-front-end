@@ -5,9 +5,9 @@
             <li>
                 <RouterLink to="/admin/view-users">Ver usuários</RouterLink>
             </li>
-            <li>
+            <!-- <li>
                 <RouterLink to="/admin/view-reservations">Ver reservas</RouterLink>
-            </li>
+            </li> -->
         </ul>
     </div>
 </template>
