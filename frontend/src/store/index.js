@@ -45,7 +45,10 @@ export default createStore({
       return state.loggedUser;
     },
     getUserLevel(state) {
-      return state.loggedUser.userLevel;
+      if (state.loggedUser) {
+        return state.loggedUser.userLevel;
+      }
+      return 0;
     },
     getReservations(state) {
       return state.reservationsSent;
