@@ -45,7 +45,7 @@
             class="loc"
           />
           <h3>Cozinha especializada</h3>
-          <p>24 horas</p>
+          <p class="servi">24 horas</p>
         </li>
         <li>
           <img
@@ -55,7 +55,7 @@
             class="loc"
           />
           <h3>Academia</h3>
-          <p>24 horas</p>
+          <p class="servi">24 horas</p>
         </li>
         <li>
           <img
@@ -65,7 +65,7 @@
             class="loc"
           />
           <h3>Piscina de frente ao mar</h3>
-          <p>24 horas</p>
+          <p class ="servi">24 horas</p>
         </li>
       </ul>
 
@@ -140,9 +140,14 @@ h1 {
 
 h3 {
   margin: 10px 100px 20px;
-  color: #567961;
+  color: #f8f8f8;
+  font-weight: bold;
 }
 
+p.servi{
+  color: rgb(7, 58, 15);
+  font-weight: bold;
+}
 .imgs {
   max-width: 96%;
   height: 100%;
@@ -201,7 +206,7 @@ ul {
   text-align: center;
 }
 .h1serv{
-  margin: 0px 496px 70px;
+  margin: 0px 165px 70px;
  
   padding-top: 5.0rem;
 }
