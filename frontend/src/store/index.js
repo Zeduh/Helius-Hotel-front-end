@@ -6,6 +6,20 @@ export default createStore({
     login: false,
     users: [],
     loggedUser: null,
+    cupomList: {
+      cincoPorcento: {
+        names: ['helius5'],
+        porcentagem: 5
+      },
+      dezPorcento: {
+        names: ['helius10'],
+        porcentagem: 10
+      },
+      vinteCincoPorcento: {
+        names: ['helius25'],
+        porcentagem: 25
+      },
+    },
     activeReservationUserList: [],
     reservationsSent: false,
   },
@@ -31,7 +45,10 @@ export default createStore({
       return state.loggedUser;
     },
     getUserLevel(state) {
-      return state.loggedUser.userLevel;
+      if (state.loggedUser) {
+        return state.loggedUser.userLevel;
+      }
+      return 0;
     },
     getReservations(state) {
       return state.reservationsSent;
