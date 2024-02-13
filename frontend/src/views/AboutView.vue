@@ -159,6 +159,9 @@ p.servi{
 }
 .localizacao {
   background-image: url("@/assets/images/loc3.jpg");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-color: #567961;
   display: flex;
   align-items: center;
   background-position: center;
